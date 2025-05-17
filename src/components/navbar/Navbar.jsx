@@ -49,7 +49,7 @@ function Navbar() {
 
           <div className="NavSearch">
             <div className="category">
-              <span> категории</span>
+              <span>Все категории</span>
               <MdOutlineKeyboardArrowDown />
               <span className="divider">|</span>
             </div>
