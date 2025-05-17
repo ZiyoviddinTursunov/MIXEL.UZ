@@ -104,7 +104,7 @@ function Navbar() {
             <li><a href="#">Ноутбуки</a></li>
             <li><a href="#">Комплектующие</a></li>
             <li><a href="#">Сетевое оборудование</a></li>
-            <li><a href="#">Ор</a></li>
+            <li><a href="#">Оргтехника</a></li>
           </ul>
         </div>
       </div>
