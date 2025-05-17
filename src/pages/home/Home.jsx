@@ -2,7 +2,18 @@ import React from 'react'
 import "./Home.css"
 function Home() {
   return (
-    <div>Home</div>
+    <>
+        <div className="hero">
+            <div className="container">
+
+            </div>
+        </div>
+        <main>
+            <section>
+
+            </section>
+        </main>
+    </>
   )
 }
 
