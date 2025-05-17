@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --red:#ED3729;
+  --transition: all .3s ease-in-out;
+}
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+ 
+}
+
+input,select,button{
+  outline: none;
+}
+a{
+  text-decoration: none;
+  
+}
+ul{
+list-style: none;
+}
+
+button{
+  cursor: pointer;
+  
+}

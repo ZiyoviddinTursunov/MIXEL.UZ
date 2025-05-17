@@ -1,0 +1,163 @@
+.nav1{
+    background-color: var(--red);
+    color: #FFFFFF;
+}
+
+.nav1 .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+}
+
+.nav1 .nav1_link{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+}
+
+
+.nav1 .nav1_link .location{
+ margin-right: 30px;
+ font-size: 14px;
+}
+
+.nav1 .nav1_link a{
+    color: #FFFFFF;
+}
+.nav1 .nav1_contact{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav1 .nav1_contact .phone{
+    display: flex;
+    align-items: end;
+font-weight: 500;
+}
+
+.nav1 .lang-select{
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+} 
+.nav1 .lang-select option{
+    border: none;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    
+} 
+
+
+.nav2 .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.NavSearch{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid var(--red);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+
+.category{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 10px;
+    font-size: 13px;
+}
+.searchInp{
+    display: flex;
+    align-items: center;
+}
+.searchInp input{
+    width: 200px;
+height: 40px;
+border: none;
+}
+
+.searchInp .HiOutlineMicrophone{
+    color: #BDBDBD;
+    cursor: pointer;
+}
+
+.srcBtn{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: white;
+    background-color: var(--red);
+    height: 40px;
+    padding: 1px 14px;
+    border: none;
+}
+
+.nav1_iconsMenu{
+    display: flex;
+
+    align-items: center;
+    gap: 14px;
+
+}
+.nav-user,.comparison,.likeProduct,.cart{
+    display: flex;
+    flex-direction: column;
+        font-size: 14px; 
+align-items: center;
+cursor: pointer;
+}
+.nav1_iconsMenu span{
+    font-weight: 500;
+}
+
+
+.nav3 .container{
+    display: flex;
+    align-items: center;
+}
+
+.categoryMenuLink{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 600;
+
+}
+
+.categoryMenuLink a{
+color: #000000;
+transition: var(--transition);
+font-size: 14px;
+}
+.categoryMenuLink a:hover{
+color: var(--red);
+}
+
+.nav3 .container button{
+    background-color: var(--red);
+    padding: 10px;
+    width: 200px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    margin-right: 20px;
+}
+.nav3 .container button .TfiMenuAlt{
+    font-size: 20px;
+}
