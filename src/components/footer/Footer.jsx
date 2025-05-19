@@ -6,7 +6,7 @@ function Footer() {
   <footer>
     <div className="container">
         <div className="footer-header">
-            <img src="/public/imgs/footerLogo.svg" alt="" />
+            <img src="/imgs/footerLogo.svg" alt="" />
             <p>График работы колл-центра
             Понедельник - Суббота: 9:00–18:00</p>
             <span>Колл-центр: <br />

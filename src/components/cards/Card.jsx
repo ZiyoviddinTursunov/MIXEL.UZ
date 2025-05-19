@@ -10,7 +10,7 @@ function Card() {
     <>
       <div className="card">
         <div className="card-image">
-          <img src="/public/imgs/cardImg.png" alt="" />
+          <img src="/imgs/cardImg.png" alt="" />
         </div>
         <div className="product-price">
           <span>458 000 сум/мес</span> 
