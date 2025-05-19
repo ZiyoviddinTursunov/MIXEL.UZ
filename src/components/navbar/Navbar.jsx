@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
+import { Link } from "react-router-dom";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -117,9 +118,10 @@ function Navbar() {
       {/* --- Middle nav with logo and search --- */}
       <div className="nav2">
         <div className="container">
-          <div className="nav_logo">
+        <Link to={"./"}>
+        <div className="nav_logo">
             <img src="/imgs/Logo.svg" alt="Logo" />
-          </div>
+          </div></Link>
 
           <div className="NavSearch">
             <div className="category">
@@ -154,12 +156,12 @@ function Navbar() {
           </div>
 
           <div className="nav1_iconsMenu">
-            <div className="nav-user">
+           <Link to={"singup"}> <div className="nav-user">
               <IconButton>
                 <FiUser className="FiUser" />
               </IconButton>
               <span>Войти</span>
-            </div>
+            </div></Link>
 
             <div className="comparison">
               <IconButton>
