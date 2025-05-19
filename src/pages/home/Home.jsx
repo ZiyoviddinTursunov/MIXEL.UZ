@@ -39,11 +39,11 @@ function Home() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide><img src="/public/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="/public/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="/public/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="/public/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="/public/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" /></SwiperSlide>
       </Swiper>
 
 </div>
@@ -153,7 +153,7 @@ function Home() {
       </div>
 
       <div className="product-image">
-        <img src="/public/imgs/892 1.png" alt="iPhone X" />
+        <img src="/imgs/892 1.png" alt="iPhone X" />
       </div>
 
       <div className="product-price-section">
@@ -197,7 +197,7 @@ function Home() {
   </h3>
   <button>Посмотреть все <GoArrowRight/></button></div>
 <div className="divCard5">
-<img src="/public/imgs/newHotRus 1.png" alt="" />
+<img src="/imgs/newHotRus 1.png" alt="" />
 <div className="cards02">
 
 <Card/>
@@ -229,46 +229,46 @@ function Home() {
       >
         <SwiperSlide>
         <div className="brendBox">
-                    <img src="/public/imgs/brend1.svg" alt="" />
+                    <img src="/imgs/brend1.svg" alt="" />
                   </div>
         </SwiperSlide>
         <SwiperSlide>     <div className="brendBox">
-                    <img src="/public/imgs/brend2.svg" alt="" />
+                    <img src="/imgs/brend2.svg" alt="" />
                   </div> </SwiperSlide>
         <SwiperSlide> <div className="brendBox">
-                    <img src="/public/imgs/brend3.svg" alt="" />
+                    <img src="/imgs/brend3.svg" alt="" />
                   </div>  </SwiperSlide>
         <SwiperSlide> 
         <div className="brendBox">
-                    <img src="/public/imgs/brend4.svg" alt="" />
+                    <img src="/imgs/brend4.svg" alt="" />
                   </div>
            </SwiperSlide>
         <SwiperSlide>  
           
         <div className="brendBox">
-                    <img src="/public/imgs/brend5.svg" alt="" />
+                    <img src="/imgs/brend5.svg" alt="" />
                   </div>
         </SwiperSlide>
         <SwiperSlide>
         <div className="brendBox">
-                    <img src="/public/imgs/brend1.svg" alt="" />
+                    <img src="/imgs/brend1.svg" alt="" />
                   </div>
         </SwiperSlide>
         <SwiperSlide>     <div className="brendBox">
-                    <img src="/public/imgs/brend2.svg" alt="" />
+                    <img src="/imgs/brend2.svg" alt="" />
                   </div> </SwiperSlide>
         <SwiperSlide> <div className="brendBox">
-                    <img src="/public/imgs/brend3.svg" alt="" />
+                    <img src="/imgs/brend3.svg" alt="" />
                   </div>  </SwiperSlide>
         <SwiperSlide> 
         <div className="brendBox">
-                    <img src="/public/imgs/brend4.svg" alt="" />
+                    <img src="/imgs/brend4.svg" alt="" />
                   </div>
            </SwiperSlide>
         <SwiperSlide>  
           
         <div className="brendBox">
-                    <img src="/public/imgs/brend5.svg" alt="" />
+                    <img src="/imgs/brend5.svg" alt="" />
                   </div>
         </SwiperSlide>
       </Swiper>
