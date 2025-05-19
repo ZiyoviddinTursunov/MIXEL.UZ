@@ -7,8 +7,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 10px;
+    padding: 10px 10px;
 }
+
+.nav_logo{
+width: 170px;
+}
+.nav_logo img{
+    width: 100%;
+}
+
 
 .nav1 .nav1_link{
     display: flex;
@@ -49,7 +57,7 @@ font-weight: 500;
     background-color: transparent;
     color: rgb(0, 0, 0);
     cursor: pointer;
-    
+
 } 
 
 
@@ -82,15 +90,42 @@ font-weight: 500;
     align-items: center;
 }
 .searchInp input{
-    width: 200px;
+    width: 220px;
 height: 40px;
 border: none;
 }
 
-.searchInp .HiOutlineMicrophone{
-    color: #BDBDBD;
-    cursor: pointer;
+
+
+.soundSrc{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: var(--transition);
+color: #BDBDBD;
 }
+
+.soundSrc.activSound{
+    background-color: var(--red);
+    color: white;
+}
+
+.soundSrc:hover{
+    background-color: #d6d3d353;
+}
+
+.soundSrc.activSound:hover{
+color: #BDBDBD;
+ background-color:var(--red);
+}
+
+
+
+
 
 .srcBtn{
     display: flex;
@@ -105,10 +140,23 @@ border: none;
 
 .nav1_iconsMenu{
     display: flex;
-
     align-items: center;
     gap: 14px;
+}
+.nav1_iconsMenu span{
+    font-size: 12px;
 
+}
+.MuiBadge-colorPrimary{
+    background-color: var(--red) !important;
+}
+
+
+.FiUser,
+.FaBalanceScale,
+.FaRegHeart,
+.FiShoppingCart{
+    font-size: 20px;
 }
 .nav-user,.comparison,.likeProduct,.cart{
     display: flex;

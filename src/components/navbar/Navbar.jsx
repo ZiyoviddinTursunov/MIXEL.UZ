@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { FiMapPin, FiShoppingCart, FiUser } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
@@ -8,7 +8,66 @@ import { IoSearch } from "react-icons/io5";
 import { FaBalanceScale, FaRegHeart } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
 
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import Badge, { badgeClasses } from "@mui/material/Badge";
+
+const CartBadge = styled(Badge)`
+  & .${badgeClasses.badge} {
+    top: -12px;
+    right: -6px;
+  }
+`;
+
 function Navbar() {
+  const [text, setText] = useState("");
+  const [status, setStatus] = useState("");
+  const [langSound, setLangSound] = useState("ru-RU");
+  const [activSound, setActivSound] = useState(false);
+
+  const langFunk = (lang) => {
+    if (lang == "uz") {
+      setLangSound("uz-UZ");
+    } else if (lang == "ru") {
+      setLangSound("ru-RU");
+    } else {
+      setLangSound("en-US");
+    }
+  };
+
+  const startRecognition = () => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      setStatus("Brauzer ovozli qidiruvni qo‘llab-quvvatlamaydi.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = langSound;
+    recognition.interimResults = false;
+
+    setStatus("Gapiring...");
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const resultText = event.results[0][0].transcript;
+      setText(resultText);
+      setStatus("Tugatildi.");
+
+      setTimeout(() => {
+        setActivSound(false);
+      }, 5000);
+    };
+
+    recognition.onerror = (event) => {
+      setStatus("Xatolik: " + event.error);
+    };
+  };
+
   return (
     <nav>
       {/* --- Top bar --- */}
@@ -19,11 +78,21 @@ function Navbar() {
               <FiMapPin />
               <span>Ташкент</span>
             </li>
-            <li><a href="#">Наши магазины</a></li>
-            <li><a href="#">B2B продажи</a></li>
-            <li><a href="#">Покупка в рассрочку</a></li>
-            <li><a href="#">Способы оплаты</a></li>
-            <li><a href="#">Гарантия на товары</a></li>
+            <li>
+              <a href="#">Наши магазины</a>
+            </li>
+            <li>
+              <a href="#">B2B продажи</a>
+            </li>
+            <li>
+              <a href="#">Покупка в рассрочку</a>
+            </li>
+            <li>
+              <a href="#">Способы оплаты</a>
+            </li>
+            <li>
+              <a href="#">Гарантия на товары</a>
+            </li>
           </ul>
 
           <div className="nav1_contact">
@@ -31,7 +100,12 @@ function Navbar() {
               <BsTelephone />
               <span>+998 95 123 55 88</span>
             </div>
-            <select className="lang-select">
+            <select
+              onChange={(e) => {
+                langFunk(e.target.value);
+              }}
+              className="lang-select"
+            >
               <option value="ru">Рус</option>
               <option value="uz">O‘zb</option>
               <option value="en">Eng</option>
@@ -55,8 +129,22 @@ function Navbar() {
             </div>
 
             <div className="searchInp">
-              <input type="text" placeholder="Телефоны и бытовая техника" />
-              <HiOutlineMicrophone className="HiOutlineMicrophone" />
+              <input
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                type="text"
+                placeholder="Телефоны и бытовая техника"
+              />
+
+              <div
+                onClick={() => {
+                  startRecognition();
+                  setActivSound(true);
+                }}
+                className={activSound ? "soundSrc activSound" : "soundSrc"}
+              >
+                <HiOutlineMicrophone className="HiOutlineMicrophone" />
+              </div>
             </div>
 
             <button className="srcBtn">
@@ -67,22 +155,48 @@ function Navbar() {
 
           <div className="nav1_iconsMenu">
             <div className="nav-user">
-              <FiUser />
+              <IconButton>
+                <FiUser className="FiUser" />
+              </IconButton>
               <span>Войти</span>
             </div>
 
             <div className="comparison">
-            <FaBalanceScale/>
+              <IconButton>
+                <FaBalanceScale className="FaBalanceScale" />
+                <CartBadge
+                  badgeContent={1}
+                  color="primary"
+                  overlap="circular"
+                />
+              </IconButton>
+
               <span>Сравнение</span>
             </div>
 
             <div className="likeProduct">
-              <FaRegHeart />
+              <IconButton>
+                <FaRegHeart className="FaRegHeart" />
+                <CartBadge
+                  badgeContent={1}
+                  color="primary"
+                  overlap="circular"
+                />
+              </IconButton>
+
               <span>Избранное</span>
             </div>
 
             <div className="cart">
-              <FiShoppingCart />
+              <IconButton>
+                <FiShoppingCart className="FiShoppingCart" />
+                <CartBadge
+                  badgeContent={1}
+                  color="primary"
+                  overlap="circular"
+                />
+              </IconButton>
+
               <span>Корзина</span>
             </div>
           </div>
@@ -92,19 +206,37 @@ function Navbar() {
       {/* --- Category menu --- */}
       <div className="nav3">
         <div className="container">
-          <button className="category-button">
-            <TfiMenuAlt className="TfiMenuAlt" />
-            <span>Категории</span>
-          </button>
+          <Box sx={{ "& button": { m: 1 } }}>
+            <div>
+              <Button size="small">
+                {" "}
+                <TfiMenuAlt className="TfiMenuAlt " /> <span>Категории</span>
+              </Button>
+            </div>
+          </Box>
 
           <ul className="categoryMenuLink">
-            <li><a href="#">Наши магазины</a></li>
-            <li><a href="#">Моноблоки</a></li>
-            <li><a href="#">Телефоны, планшеты</a></li>
-            <li><a href="#">Ноутбуки</a></li>
-            <li><a href="#">Комплектующие</a></li>
-            <li><a href="#">Сетевое оборудование</a></li>
-            <li><a href="#">Оргтехника</a></li>
+            <li>
+              <a href="#">Наши магазины</a>
+            </li>
+            <li>
+              <a href="#">Моноблоки</a>
+            </li>
+            <li>
+              <a href="#">Телефоны, планшеты</a>
+            </li>
+            <li>
+              <a href="#">Ноутбуки</a>
+            </li>
+            <li>
+              <a href="#">Комплектующие</a>
+            </li>
+            <li>
+              <a href="#">Сетевое оборудование</a>
+            </li>
+            <li>
+              <a href="#">Оргтехника</a>
+            </li>
           </ul>
         </div>
       </div>
