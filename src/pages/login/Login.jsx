@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Login.css"
 import { FaUser, FaLock, FaEnvelope, FaPhone, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 function Login() {
+  const [eye,setEye]=useState(true);
   return (
     <div className="Login">
     <div className=" container">
@@ -27,11 +28,17 @@ function Login() {
         <div className="input-group">
           <FaLock className="input-icon" />
           <input 
-            type="password" 
+            type={eye ?"password" :"text" }
             placeholder="Пароль" 
           />
-          <button type="button" className="toggle-password">
-            <FaEye />
+          <button onClick={()=>{
+            setEye(!eye)
+          }} type="button" className="toggle-password">
+            {
+              eye ?    <FaEye /> : <FaEyeSlash />
+            }
+           
+         
           </button>
         </div>
         
