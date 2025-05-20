@@ -157,7 +157,7 @@ function Navbar({ setModalCtgry, modalCtgry }) {
           </div>
 
           <div className="nav1_iconsMenu">
-            <Link to={"singup"}>
+            <Link to={"/login"}>
               {" "}
               <div className="nav-user">
                 <IconButton>
