@@ -1,0 +1,116 @@
+.categories .container {
+  padding: 20px 0px;
+}
+
+.extra_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.extra_info p {
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: rgba(98, 99, 100, 1);
+}
+
+.extra_info span {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ctgry_main_info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ctgry_main_info h2 {
+  width: 30%;
+}
+
+.ctgry_ordering {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ctgry_ordering p {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  color: rgba(144, 144, 144, 1);
+  font-size: 14px;
+}
+
+.ctgry_ordering span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctgry_ordering span:hover {
+  color: rgba(237, 55, 41, 1);
+}
+
+.coin {
+  font-size: 22px;
+}
+
+.features {
+  width: 28%;
+  border: 1px solid rgba(242, 242, 242, 1);
+  border-radius: 5px;
+}
+
+.features_info {
+  padding: 15px;
+}
+
+.feature_title {
+  font-weight: 350;
+  margin-bottom: 20px !important;
+}
+
+.price_div {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.price_div span {
+  padding: 7px 20px;
+  border: 1px solid rgba(224, 224, 224, 1);
+}
+
+.price_div span:nth-child(1) {
+  border-radius: 5px 0px 0px 5px;
+  border-right: none;
+}
+.price_div span:nth-child(2) {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.features_info div {
+  margin-bottom: 20px;
+}
+
+.nalichi {
+  width: 100%;
+  border: 1px solid rgba(237, 55, 41, 1);
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nalichi p {
+  font-size: 13px;
+}

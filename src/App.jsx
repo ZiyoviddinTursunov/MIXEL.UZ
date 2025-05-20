@@ -7,6 +7,8 @@ import SingPu from "./pages/singUp/SingUp";
 import Login from "./pages/login/Login";
 import { useState } from "react";
 import Modalctgry from "./components/modalctgry/Modalctgry";
+import Category from "./pages/category/Category";
+
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
@@ -14,12 +16,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar  setModalCtgry={setModalCtgry} modalCtgry={modalCtgry}/>
+        <Navbar setModalCtgry={setModalCtgry} modalCtgry={modalCtgry} />
         {modalCtgry && <Modalctgry />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/category" element={<Category/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

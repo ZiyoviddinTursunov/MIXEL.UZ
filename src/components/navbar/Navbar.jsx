@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import "./Navbar.css";
 import { FiMapPin, FiShoppingCart, FiUser } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
@@ -13,7 +13,8 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Category from "../../pages/category/Category";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -27,6 +28,7 @@ function Navbar({ setModalCtgry, modalCtgry }) {
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
   const [activSound, setActivSound] = useState(false);
+  const navigate = useNavigate();
 
   const langFunk = (lang) => {
     if (lang == "uz") {
@@ -226,7 +228,11 @@ function Navbar({ setModalCtgry, modalCtgry }) {
           </Box>
 
           <ul className="categoryMenuLink">
-            <li>
+            <li
+              onClick={() => {
+                navigate("/category");
+              }}
+            >
               <a href="#">Наши магазины</a>
             </li>
             <li>
@@ -251,7 +257,6 @@ function Navbar({ setModalCtgry, modalCtgry }) {
         </div>
       </div>
     </nav>
-    
   );
 }
 
