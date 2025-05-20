@@ -1,5 +1,5 @@
 import React from "react";
-import "./Modal.css";
+import "./Modalctgry.css";
 import { FaAngleRight } from "react-icons/fa";
 
 function Modalctgry() {
