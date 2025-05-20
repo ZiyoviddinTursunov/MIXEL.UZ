@@ -251,7 +251,6 @@ function Navbar({ setModalCtgry, modalCtgry }) {
         </div>
       </div>
     </nav>
-    
   );
 }
 

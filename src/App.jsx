@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar  setModalCtgry={setModalCtgry} modalCtgry={modalCtgry}/>
+        <Navbar setModalCtgry={setModalCtgry} modalCtgry={modalCtgry} />
         {modalCtgry && <Modalctgry />}
         <Routes>
           <Route path="/" element={<Home />} />

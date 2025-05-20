@@ -13,7 +13,7 @@ function Card() {
           <img src="/imgs/cardImg.png" alt="" />
         </div>
         <div className="product-price">
-          <span>458 000 сум/мес</span> 
+          <span>458 000 сум/мес</span>
           <del>529 000 сум</del>
         </div>
         <div className="product-title">
@@ -31,15 +31,18 @@ function Card() {
           <span className="borderLeft">|</span>
           <button>
             {" "}
-            <Checkbox {...label} icon={<FaHeart />} checkedIcon={<FaHeart color="var(--red)"/>} />
+            <Checkbox
+              {...label}
+              icon={<FaHeart />}
+              checkedIcon={<FaHeart color="var(--red)" />}
+            />
           </button>
           <button>
-          <span className="borderLeft"  >|</span>
-            {" "}
+            <span className="borderLeft">|</span>{" "}
             <Checkbox
               {...label}
               icon={<FaBalanceScale />}
-              checkedIcon={<FaBalanceScale  color="var(--red)"/>}
+              checkedIcon={<FaBalanceScale color="var(--red)" />}
             />
           </button>
         </div>
