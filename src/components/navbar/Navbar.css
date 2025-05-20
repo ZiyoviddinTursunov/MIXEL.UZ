@@ -1,211 +1,218 @@
-.nav1{
-    background-color: var(--red);
-    color: #FFFFFF;
+nav {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  z-index: 92;
+  top: 0px;
 }
 
-.nav1 .container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 10px;
+.nav1 {
+  background-color: var(--red);
+  color: #ffffff;
 }
 
-.nav_logo{
-width: 170px;
-}
-.nav_logo img{
-    width: 100%;
+.nav2 {
+  background-color: white;
 }
 
-
-.nav1 .nav1_link{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 12px;
+.nav3 {
+  background-color: white;
 }
 
-
-.nav1 .nav1_link .location{
- margin-right: 30px;
- font-size: 14px;
+.nav1 .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
 }
 
-.nav1 .nav1_link a{
-    color: #FFFFFF;
+.nav_logo {
+  width: 170px;
 }
-.nav1 .nav1_contact{
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.nav_logo img {
+  width: 100%;
 }
 
-.nav1 .nav1_contact .phone{
-    display: flex;
-    align-items: end;
-font-weight: 500;
+.nav1 .nav1_link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
 }
 
-.nav1 .lang-select{
-    border: none;
-    background-color: transparent;
-    color: white;
-    cursor: pointer;
-} 
-.nav1 .lang-select option{
-    border: none;
-    background-color: transparent;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-
-} 
-
-
-.nav2 .container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+.nav1 .nav1_link .location {
+  margin-right: 30px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
-.NavSearch{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border: 2px solid var(--red);
-    border-radius: 6px;
-    overflow: hidden;
+.nav1 .nav1_link a {
+  color: #ffffff;
+}
+.nav1 .nav1_contact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-
-.category{
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    padding: 10px;
-    font-size: 13px;
-}
-.searchInp{
-    display: flex;
-    align-items: center;
-}
-.searchInp input{
-    width: 220px;
-height: 40px;
-border: none;
+.nav1 .nav1_contact .phone {
+  display: flex;
+  align-items: end;
+  font-weight: 500;
 }
 
-
-
-.soundSrc{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: var(--transition);
-color: #BDBDBD;
+.nav1 .lang-select {
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+.nav1 .lang-select option {
+  border: none;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
 }
 
-.soundSrc.activSound{
-    background-color: var(--red);
-    color: white;
+.nav2 .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
 
-.soundSrc:hover{
-    background-color: #d6d3d353;
+.NavSearch {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid var(--red);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-.soundSrc.activSound:hover{
-color: #BDBDBD;
- background-color:var(--red);
+.category {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 10px;
+  font-size: 13px;
+}
+.searchInp {
+  display: flex;
+  align-items: center;
+}
+.searchInp input {
+  width: 220px;
+  height: 40px;
+  border: none;
 }
 
-
-
-
-
-.srcBtn{
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: white;
-    background-color: var(--red);
-    height: 40px;
-    padding: 1px 14px;
-    border: none;
+.soundSrc {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: #bdbdbd;
 }
 
-.nav1_iconsMenu{
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-.nav1_iconsMenu span{
-    font-size: 12px;
-
-}
-.MuiBadge-colorPrimary{
-    background-color: var(--red) !important;
+.soundSrc.activSound {
+  background-color: var(--red);
+  color: white;
 }
 
+.soundSrc:hover {
+  background-color: #d6d3d353;
+}
+
+.soundSrc.activSound:hover {
+  color: #bdbdbd;
+  background-color: var(--red);
+}
+
+.srcBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  background-color: var(--red);
+  height: 40px;
+  padding: 1px 14px;
+  border: none;
+}
+
+.nav1_iconsMenu {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nav1_iconsMenu span {
+  font-size: 12px;
+}
+.MuiBadge-colorPrimary {
+  background-color: var(--red) !important;
+}
 
 .FiUser,
 .FaBalanceScale,
 .FaRegHeart,
-.FiShoppingCart{
-    font-size: 20px;
+.FiShoppingCart {
+  font-size: 20px;
 }
-.nav-user,.comparison,.likeProduct,.cart{
-    display: flex;
-    flex-direction: column;
-        font-size: 14px; 
-align-items: center;
-cursor: pointer;
+.nav-user,
+.comparison,
+.likeProduct,
+.cart {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  align-items: center;
+  cursor: pointer;
 }
-.nav1_iconsMenu span{
-    font-weight: 500;
-}
-
-
-.nav3 .container{
-    display: flex;
-    align-items: center;
+.nav1_iconsMenu span {
+  font-weight: 500;
 }
 
-.categoryMenuLink{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-weight: 600;
-
+.nav3 .container {
+  display: flex;
+  align-items: center;
 }
 
-.categoryMenuLink a{
-color: #000000;
-transition: var(--transition);
-font-size: 14px;
-}
-.categoryMenuLink a:hover{
-color: var(--red);
+.categoryMenuLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 600;
 }
 
-.nav3 .container button{
-    background-color: var(--red);
-    padding: 10px;
-    width: 200px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 15px;
-    border-radius: 6px;
-    border: none;
-    margin-right: 20px;
+.categoryMenuLink a {
+  color: #000000;
+  transition: var(--transition);
+  font-size: 14px;
 }
-.nav3 .container button .TfiMenuAlt{
-    font-size: 20px;
+.categoryMenuLink a:hover {
+  color: var(--red);
+}
+
+.nav3 .container button {
+  background-color: var(--red);
+  padding: 10px;
+  width: 200px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  margin-right: 20px;
+}
+.nav3 .container button .TfiMenuAlt {
+  font-size: 20px;
 }

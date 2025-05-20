@@ -22,7 +22,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar() {
+function Navbar({ setModalCtgry, modalCtgry }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -118,10 +118,11 @@ function Navbar() {
       {/* --- Middle nav with logo and search --- */}
       <div className="nav2">
         <div className="container">
-        <Link to={"./"}>
-        <div className="nav_logo">
-            <img src="/imgs/Logo.svg" alt="Logo" />
-          </div></Link>
+          <Link to={"./"}>
+            <div className="nav_logo">
+              <img src="/imgs/Logo.svg" alt="Logo" />
+            </div>
+          </Link>
 
           <div className="NavSearch">
             <div className="category">
@@ -156,12 +157,15 @@ function Navbar() {
           </div>
 
           <div className="nav1_iconsMenu">
-           <Link to={"singup"}> <div className="nav-user">
-              <IconButton>
-                <FiUser className="FiUser" />
-              </IconButton>
-              <span>Войти</span>
-            </div></Link>
+            <Link to={"singup"}>
+              {" "}
+              <div className="nav-user">
+                <IconButton>
+                  <FiUser className="FiUser" />
+                </IconButton>
+                <span>Войти</span>
+              </div>
+            </Link>
 
             <div className="comparison">
               <IconButton>
@@ -209,7 +213,11 @@ function Navbar() {
       <div className="nav3">
         <div className="container">
           <Box sx={{ "& button": { m: 1 } }}>
-            <div>
+            <div
+              onClick={() => {
+                setModalCtgry(!modalCtgry);
+              }}
+            >
               <Button size="small">
                 {" "}
                 <TfiMenuAlt className="TfiMenuAlt " /> <span>Категории</span>
@@ -243,6 +251,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
+    
   );
 }
 
