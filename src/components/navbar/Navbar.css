@@ -181,6 +181,7 @@ nav {
 .nav3 .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .categoryMenuLink {

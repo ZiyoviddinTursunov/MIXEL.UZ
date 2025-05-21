@@ -23,7 +23,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry }) {
+function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -228,31 +228,17 @@ function Navbar({ setModalCtgry, modalCtgry }) {
           </Box>
 
           <ul className="categoryMenuLink">
-            <li
-              onClick={() => {
-                navigate("/category");
-              }}
-            >
-              <a href="#">Наши магазины</a>
-            </li>
-            <li>
-              <a href="#">Моноблоки</a>
-            </li>
-            <li>
-              <a href="#">Телефоны, планшеты</a>
-            </li>
-            <li>
-              <a href="#">Ноутбуки</a>
-            </li>
-            <li>
-              <a href="#">Комплектующие</a>
-            </li>
-            <li>
-              <a href="#">Сетевое оборудование</a>
-            </li>
-            <li>
-              <a href="#">Оргтехника</a>
-            </li>
+            {categoryInfo?.results?.map((item) => {
+              return (
+                <li
+                  onClick={() => {
+                    navigate("/category");
+                  }}
+                >
+                  <a href="#">{item.name}</a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

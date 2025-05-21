@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
-
 import Card from "../../components/cards/Card";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { GoArrowRight } from "react-icons/go";
+import { HiH1 } from "react-icons/hi2";
 
-function Home() {
+function Home({ categoryInfo, brands }) {
   return (
     <>
       <div className="hero">
@@ -93,69 +88,16 @@ function Home() {
                 modules={[Autoplay, Navigation]}
                 className="mySwiper"
               >
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="boxCategory">
-                    <h4>Компьютеры</h4>
-                    <img
-                      src="https://abzzvx.pythonanywhere.com/media/images/camputer.png"
-                      alt=""
-                    />
-                  </div>
-                </SwiperSlide>
+                {categoryInfo?.results?.map((item) => {
+                  return (
+                    <SwiperSlide>
+                      <div className="boxCategory">
+                        <h4>{item.name}</h4>
+                        <img src={item.image} alt="" />
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
           </div>
@@ -228,6 +170,8 @@ function Home() {
             </div>
           </div>
         </section>
+
+        
         <section className="section6">
           <div className="container">
             <Swiper
@@ -243,60 +187,19 @@ function Home() {
               modules={[Autoplay, Navigation]}
               className="mySwiper"
             >
-              <SwiperSlide>
-                <div className="brendBox">
-                  <img src="/imgs/brend1.svg" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <div className="brendBox">
-                  <img src="/imgs/brend2.svg" alt="" />
-                </div>{" "}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <div className="brendBox">
-                  <img src="/imgs/brend3.svg" alt="" />
-                </div>{" "}
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="brendBox">
-                  <img src="/imgs/brend4.svg" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="brendBox">
-                  <img src="/imgs/brend5.svg" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="brendBox">
-                  <img src="/imgs/brend1.svg" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <div className="brendBox">
-                  <img src="/imgs/brend2.svg" alt="" />
-                </div>{" "}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <div className="brendBox">
-                  <img src="/imgs/brend3.svg" alt="" />
-                </div>{" "}
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="brendBox">
-                  <img src="/imgs/brend4.svg" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="brendBox">
-                  <img src="/imgs/brend5.svg" alt="" />
-                </div>
-              </SwiperSlide>
+              {brands?.results?.map((item) => {
+                return (
+                  <SwiperSlide>
+                    <div className="brendBox">
+                      {item.image ? (
+                        <img src={item.image} alt="" />
+                      ) : (
+                        <h1>{item.name}</h1>
+                      )}
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
         </section>
