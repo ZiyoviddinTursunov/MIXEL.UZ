@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { baseURL } from "../../config";
 
 function SingPu() {
   const [eye, setEye] = useState(true);
@@ -36,7 +37,7 @@ function SingPu() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/users/register", requestOptions)
+    fetch(`${baseURL}/users/register`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result);

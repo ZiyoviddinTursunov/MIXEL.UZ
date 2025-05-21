@@ -10,6 +10,7 @@ import Modalctgry from "./components/modalctgry/Modalctgry";
 import Category from "./pages/category/Category";
 import { ToastContainer } from "react-toastify";
 import { FaLaptopHouse } from "react-icons/fa";
+import { baseURL } from "./config";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
@@ -22,7 +23,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/categories/", requestOptions)
+    fetch(`${baseURL}/categories/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setCategoryInfo(result);
@@ -36,7 +37,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/brands/", requestOptions)
+    fetch(`${baseURL}/brands/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setBrands(result);
