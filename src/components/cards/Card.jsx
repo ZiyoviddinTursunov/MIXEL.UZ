@@ -4,20 +4,24 @@ import Checkbox from "@mui/material/Checkbox";
 import { FaBalanceScale, FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
-function Card() {
+function Card({ item }) {
+  console.log(item);
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <>
       <div className="card">
-        <div className="card-image">
-          <img src="/imgs/cardImg.png" alt="" />
+        <div className="cart_main_info">
+          <div className="card-image">
+          <img src={item?.main_image} alt="" />
         </div>
         <div className="product-price">
-          <span>458 000 сум/мес</span>
-          <del>529 000 сум</del>
+          <span>{item?.monthly_price} сум/мес</span>
+          <h5>{item?.price} сум</h5>
         </div>
         <div className="product-title">
-          <h5>Умные часы Haylou RT-LS05S</h5>
+          <h5>{item?.name}</h5>
+        </div>
         </div>
         <div className="product-menu">
           <button>

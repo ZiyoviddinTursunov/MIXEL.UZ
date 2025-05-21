@@ -14,8 +14,23 @@ import { baseURL } from "./config";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
+  const [data, setData] = useState(null);
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [brands, setBrands] = useState();
+
+  const getData = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/products/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const getCategory = () => {
     const requestOptions = {
@@ -46,9 +61,11 @@ function App() {
   };
 
   useEffect(() => {
+    getData();
     getCategory();
     getBrands();
   }, []);
+
 
   return (
     <>
@@ -63,7 +80,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home categoryInfo={categoryInfo} brands={brands} />}
+            element={<Home categoryInfo={categoryInfo} brands={brands} data={data} />}
           />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />

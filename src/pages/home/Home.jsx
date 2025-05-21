@@ -9,7 +9,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { GoArrowRight } from "react-icons/go";
 import { HiH1 } from "react-icons/hi2";
 
-function Home({ categoryInfo, brands }) {
+function Home({ categoryInfo, brands, data }) {
   return (
     <>
       <div className="hero">
@@ -59,14 +59,9 @@ function Home({ categoryInfo, brands }) {
               </button>
             </div>
             <div className="cards01">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {data?.results.map((item) => {
+                return <Card item={item} />;
+              })}
             </div>
           </div>
         </section>
@@ -136,16 +131,9 @@ function Home({ categoryInfo, brands }) {
               </button>
             </div>
             <div className="cards01">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {data?.results.slice(0, 10).map((item) => {
+                return <Card item={item} />;
+              })}
             </div>
           </div>
         </section>
@@ -160,18 +148,14 @@ function Home({ categoryInfo, brands }) {
             <div className="divCard5">
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {data?.results.slice(6, 12).map((item) => {
+                  return <Card item={item} />;
+                })}
               </div>
             </div>
           </div>
         </section>
 
-        
         <section className="section6">
           <div className="container">
             <Swiper
