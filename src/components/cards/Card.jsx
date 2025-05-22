@@ -5,7 +5,6 @@ import { FaBalanceScale, FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
 function Card({ item }) {
-  console.log(item);
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (

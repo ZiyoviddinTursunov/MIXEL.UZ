@@ -8,8 +8,30 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { GoArrowRight } from "react-icons/go";
 import { HiH1 } from "react-icons/hi2";
+import { baseURL } from "../../config";
 
 function Home({ categoryInfo, brands, data }) {
+  const [galery, setGalery] = useState(null);
+
+  const getGalery = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${baseURL}/galary/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.results);
+        setGalery(result.results);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    getGalery();
+  }, []);
+
   return (
     <>
       <div className="hero">
@@ -30,21 +52,13 @@ function Home({ categoryInfo, brands, data }) {
               modules={[Autoplay, Pagination, Navigation]}
               className="mySwiper"
             >
-              <SwiperSlide>
-                <img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/imgs/75huylFjILwQmN7lrs89 1.png" alt="" />
-              </SwiperSlide>
+              {galery?.map((item) => {
+                return (
+                  <SwiperSlide>
+                    <img src={item.image} alt="" />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
         </div>

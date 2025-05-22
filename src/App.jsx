@@ -24,7 +24,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/products/", requestOptions)
+    fetch(`${baseURL}/products/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setData(result);
