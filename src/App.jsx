@@ -101,6 +101,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar getData={getData}
+        data={data}
           setModalCtgry={setModalCtgry}
           modalCtgry={modalCtgry}
           categoryInfo={categoryInfo}

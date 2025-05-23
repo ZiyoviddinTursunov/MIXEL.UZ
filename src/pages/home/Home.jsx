@@ -38,7 +38,7 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
         <div className="container">
           <div className="hero_slider">
 {
-  getData && galery?.length>0  ? <Swiper
+  data  ? <Swiper
              
   spaceBetween={30}
   centeredSlides={true}
@@ -79,9 +79,19 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
               </button>
             </div>
             <div className="cards01">
-              {data?.results?.map((item,index) => {
-                return <Card likedData={likedData} getData={getData} key={index}  item={item} />;
-              })}
+              {
+                data ? data?.results?.map((item,index) => {
+                  return <Card likedData={likedData} getData={getData} key={index}  item={item} />;
+                }) :    [...Array(10)].map((_,i)=>{
+                  return <div key={i} className="gradient-placeholder"></div>
+                 })
+                
+              }
+         
+      
+         
+            
+       
             </div>
           </div>
         </section>

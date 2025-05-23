@@ -9,10 +9,9 @@
   justify-content: center;
   gap: 20px;
 }
-.hero_slider .gradient-placeholder{
-  height: 330px;
-  width: 1000px;
-}
+
+
+
 
 /* .hero_slider img{
     width: 1000px;
@@ -240,4 +239,18 @@
 }
 .brendBox img {
   object-fit: contain;
+}
+
+
+
+
+
+/* animation */
+.hero_slider .gradient-placeholder{
+  height: 300px;
+  width: 1100px;
+}
+.cards01 .gradient-placeholder{
+  width: 230px;
+  height: 340px;
 }

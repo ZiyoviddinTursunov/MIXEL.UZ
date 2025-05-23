@@ -23,7 +23,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData }) {
+function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData ,data}) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -119,100 +119,91 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData }) {
 
       {/* --- Middle nav with logo and search --- */}
       <div className="nav2">
-        <div className="container">
-          <Link to={"./"}>
-            <div className="nav_logo">
-              <img src="/imgs/Logo.svg" alt="Logo" />
-            </div>
-          </Link>
 
-          <div className="NavSearch">
-            <div className="category">
-              <span>Все категории</span>
-              <MdOutlineKeyboardArrowDown />
-              <span className="divider">|</span>
-            </div>
 
-            <div className="searchInp">
-              <input
-                value={text}
-                onClick={() => {
-                  navigate("/search");
-                }}
-                onChange={(e) => setText(e.target.value)}
-                type="text"
-                placeholder="Телефоны и бытовая техника"
-              />
+    <div className="container">
+      <Link to={"./"}>
+        <div className="nav_logo">
+          <img src="/imgs/Logo.svg" alt="Logo" />
+        </div>
+      </Link>
 
-              <div
-                onClick={() => {
-                  startRecognition();
-                  setActivSound(true);
-                }}
-                className={activSound ? "soundSrc activSound" : "soundSrc"}
-              >
-                <HiOutlineMicrophone className="HiOutlineMicrophone" />
-              </div>
-            </div>
+      <div className="NavSearch">
+        <div className="category">
+          <span>Все категории</span>
+          <MdOutlineKeyboardArrowDown />
+          <span className="divider">|</span>
+        </div>
 
-            <button className="srcBtn">
-              <IoSearch />
-              <span>Поиск</span>
-            </button>
-          </div>
+        <div className="searchInp">
+          <input
+            value={text}
+            onClick={() => navigate("/search")}
+            onChange={(e) => setText(e.target.value)}
+            type="text"
+            placeholder="Телефоны и бытовая техника"
+          />
 
-          <div className="nav1_iconsMenu">
-            <Link to={"/comparison"}>
-              <div className="comparison">
-                <IconButton>
-                  <FaBalanceScale className="FaBalanceScale" />
-                  <CartBadge
-                    badgeContent={1}
-                    color="primary"
-                    overlap="circular"
-                  />
-                </IconButton>
-
-                <span>Сравнение</span>
-              </div>
-            </Link>
-            <Link to={"/wishlist"}>
-              <div className="likeProduct">
-                <IconButton>
-                  <FaRegHeart className="FaRegHeart" />
-                  <CartBadge
-                    badgeContent={dataLike?.count}
-                    color="primary"
-                    overlap="circular"
-                  />
-                </IconButton>
-
-                <span>Избранное</span>
-              </div>
-            </Link>
-            <div className="cart">
-              <IconButton>
-                <FiShoppingCart className="FiShoppingCart" />
-                <CartBadge
-                  badgeContent={1}
-                  color="primary"
-                  overlap="circular"
-                />
-              </IconButton>
-
-              <span>Корзина</span>
-            </div>
-            <Link to={"/login"}>
-              {" "}
-              <div className="nav-user">
-                <IconButton>
-                  <FiUser className="FiUser" />
-                </IconButton>
-                <span>Войти</span>
-              </div>
-            </Link>
+          <div
+            onClick={() => {
+              startRecognition();
+              setActivSound(true);
+            }}
+            className={activSound ? "soundSrc activSound" : "soundSrc"}
+          >
+            <HiOutlineMicrophone className="HiOutlineMicrophone" />
           </div>
         </div>
+
+        <button className="srcBtn">
+          <IoSearch />
+          <span>Поиск</span>
+        </button>
+      </div>
+
+      <div className="nav1_iconsMenu">
+        <Link to={"/comparison"}>
+          <div className="comparison">
+            <IconButton>
+              <FaBalanceScale className="FaBalanceScale" />
+              <CartBadge badgeContent={1} color="primary" overlap="circular" />
+            </IconButton>
+            <span>Сравнение</span>
+          </div>
+        </Link>
+
+        <Link to={"/wishlist"}>
+          <div className="likeProduct">
+            <IconButton>
+              <FaRegHeart className="FaRegHeart" />
+              <CartBadge badgeContent={dataLike?.count} color="primary" overlap="circular" />
+            </IconButton>
+            <span>Избранное</span>
+          </div>
+        </Link>
+
+        <div className="cart">
+          <IconButton>
+            <FiShoppingCart className="FiShoppingCart" />
+            <CartBadge badgeContent={1} color="primary" overlap="circular" />
+          </IconButton>
+          <span>Корзина</span>
+        </div>
+
+        <Link to={"/login"}>
+          <div className="nav-user">
+            <IconButton>
+              <FiUser className="FiUser" />
+            </IconButton>
+            <span>Войти</span>
+          </div>
+        </Link>
+      </div>
+    </div>
+
+
+
+    
       </div>
 
       {/* --- Category menu --- */}
@@ -233,8 +224,7 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData }) {
 
           <ul className="categoryMenuLink">
           {
-  getData && categoryInfo?.results?.length > 0
-    ? categoryInfo.results.map((item, index) => (
+data ? categoryInfo?.results?.map((item, index) => (
         <li key={index} onClick={() => navigate("/category")}>
           <a href="#">{item.name}</a>
         </li>
