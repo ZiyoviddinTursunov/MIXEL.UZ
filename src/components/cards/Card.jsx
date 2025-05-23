@@ -5,6 +5,7 @@ import { FaBalanceScale, FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
 function Card({ item }) {
+console.log(item);
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
@@ -34,7 +35,15 @@ function Card({ item }) {
           <span className="borderLeft">|</span>
           <button>
             {" "}
-            <Checkbox
+            <Checkbox onChange={(e)=>{
+              if (e.target.checked) {
+                console.log("salom");
+                
+              }else{
+                console.log("alik");
+                
+              }
+            }}
               {...label}
               icon={<FaHeart />}
               checkedIcon={<FaHeart color="var(--red)" />}

@@ -22,7 +22,7 @@ function Home({ categoryInfo, brands, data }) {
     fetch(`${baseURL}/galary/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.results);
+
         setGalery(result.results);
       })
       .catch((error) => console.error(error));
@@ -38,7 +38,7 @@ function Home({ categoryInfo, brands, data }) {
         <div className="container">
           <div className="hero_slider">
             <Swiper
-              loop={true}
+             
               spaceBetween={30}
               centeredSlides={true}
               autoplay={{
@@ -73,8 +73,8 @@ function Home({ categoryInfo, brands, data }) {
               </button>
             </div>
             <div className="cards01">
-              {data?.results.map((item) => {
-                return <Card item={item} />;
+              {data?.results.map((item,index) => {
+                return <Card key={index}  item={item} />;
               })}
             </div>
           </div>
@@ -86,7 +86,7 @@ function Home({ categoryInfo, brands, data }) {
             <div className="boxCategorys">
               <Swiper
                 slidesPerView={4}
-                loop={true}
+               
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
@@ -145,8 +145,8 @@ function Home({ categoryInfo, brands, data }) {
               </button>
             </div>
             <div className="cards01">
-              {data?.results.slice(0, 10).map((item) => {
-                return <Card item={item} />;
+              {data?.results.slice(0, 10).map((item,index) => {
+                return <Card key={index} item={item} />;
               })}
             </div>
           </div>
@@ -162,8 +162,8 @@ function Home({ categoryInfo, brands, data }) {
             <div className="divCard5">
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
-                {data?.results.slice(6, 12).map((item) => {
-                  return <Card item={item} />;
+                {data?.results.slice(6, 12).map((item,index) => {
+                  return <Card key={index} item={item} />;
                 })}
               </div>
             </div>
@@ -174,7 +174,7 @@ function Home({ categoryInfo, brands, data }) {
           <div className="container">
             <Swiper
               slidesPerView={5}
-              loop={true}
+             
               spaceBetween={30}
               centeredSlides={true}
               autoplay={{
@@ -185,9 +185,9 @@ function Home({ categoryInfo, brands, data }) {
               modules={[Autoplay, Navigation]}
               className="mySwiper"
             >
-              {brands?.results?.map((item) => {
+              {brands?.results?.map((item,index) => {
                 return (
-                  <SwiperSlide>
+                  <SwiperSlide key={index}>
                     <div className="brendBox">
                       {item.image ? (
                         <img src={item.image} alt="" />

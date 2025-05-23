@@ -234,9 +234,9 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           </Box>
 
           <ul className="categoryMenuLink">
-            {categoryInfo?.results?.map((item) => {
+            {categoryInfo?.results?.map((item,index) => {
               return (
-                <li
+                <li key={index}
                   onClick={() => {
                     navigate("/category");
                   }}
