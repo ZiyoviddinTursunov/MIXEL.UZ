@@ -9,6 +9,10 @@
   justify-content: center;
   gap: 20px;
 }
+.hero_slider .gradient-placeholder{
+  height: 330px;
+  width: 1000px;
+}
 
 /* .hero_slider img{
     width: 1000px;

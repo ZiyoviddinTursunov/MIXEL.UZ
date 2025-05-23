@@ -23,7 +23,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike }) {
+function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -232,18 +232,20 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike }) {
           </Box>
 
           <ul className="categoryMenuLink">
-            {categoryInfo?.results?.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  onClick={() => {
-                    navigate("/category");
-                  }}
-                >
-                  <a href="#">{item.name}</a>
-                </li>
-              );
-            })}
+          {
+  getData && categoryInfo?.results?.length > 0
+    ? categoryInfo.results.map((item, index) => (
+        <li key={index} onClick={() => navigate("/category")}>
+          <a href="#">{item.name}</a>
+        </li>
+      ))
+    : [...Array(5)].map((_, i) => (
+        <div key={i} className="gradient-placeholder"></div>
+      ))
+}
+
+          
+      
           </ul>
         </div>
       </div>

@@ -37,29 +37,35 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
       <div className="hero">
         <div className="container">
           <div className="hero_slider">
-            <Swiper
+{
+  getData && galery?.length>0  ? <Swiper
              
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              modules={[Autoplay, Pagination, Navigation]}
-              className="mySwiper"
-            >
-              {galery?.map((item) => {
-                return (
-                  <SwiperSlide>
-                    <img src={item.image} alt="" />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+  spaceBetween={30}
+  centeredSlides={true}
+  autoplay={{
+    delay: 2500,
+    disableOnInteraction: false,
+  }}
+  pagination={{
+    clickable: true,
+  }}
+  navigation={true}
+  modules={[Autoplay, Pagination, Navigation]}
+  className="mySwiper"
+>
+  {galery?.map((item) => {
+    return (
+      <SwiperSlide>
+        <img src={item.image} alt="" />
+      </SwiperSlide>
+    );
+  })}
+</Swiper> : [...Array(1)].map((_, i) => (
+        <div key={i} className="gradient-placeholder"></div>
+      ))
+}
+
+            
           </div>
         </div>
       </div>

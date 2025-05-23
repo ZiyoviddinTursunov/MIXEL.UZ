@@ -18,6 +18,11 @@ nav {
 .nav3 {
   background-color: white;
 }
+.nav3 .gradient-placeholder{
+  width: 150px;
+  height: 20px;
+}
+
 
 .nav1 .container {
   display: flex;

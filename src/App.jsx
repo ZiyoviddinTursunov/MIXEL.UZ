@@ -100,7 +100,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar
+        <Navbar getData={getData}
           setModalCtgry={setModalCtgry}
           modalCtgry={modalCtgry}
           categoryInfo={categoryInfo}
@@ -117,7 +117,7 @@ function App() {
           />
 
           <Route path="/comparison" element={<Comparison />} />
-          <Route path="/wishlist" element={<Liked  dataLike={dataLike}/>} />
+          <Route path="/wishlist" element={<Liked  dataLike={dataLike} likedData={likedData} getData={getData}/>} />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
