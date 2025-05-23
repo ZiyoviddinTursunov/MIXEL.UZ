@@ -136,6 +136,9 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
             <div className="searchInp">
               <input
                 value={text}
+                onClick={()=>{
+                  navigate("/search")
+                }}
                 onChange={(e) => setText(e.target.value)}
                 type="text"
                 placeholder="Телефоны и бытовая техника"
@@ -159,17 +162,10 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           </div>
 
           <div className="nav1_iconsMenu">
-            <Link to={"/login"}>
-              {" "}
-              <div className="nav-user">
-                <IconButton>
-                  <FiUser className="FiUser" />
-                </IconButton>
-                <span>Войти</span>
-              </div>
-            </Link>
+           
 
-            <div className="comparison">
+          <Link to={"/comparison"}>
+       <div className="comparison">
               <IconButton>
                 <FaBalanceScale className="FaBalanceScale" />
                 <CartBadge
@@ -180,9 +176,10 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
               </IconButton>
 
               <span>Сравнение</span>
-            </div>
+            </div></Link>
+            <Link to={"/wishlist"}>
 
-            <div className="likeProduct">
+<div className="likeProduct">
               <IconButton>
                 <FaRegHeart className="FaRegHeart" />
                 <CartBadge
@@ -194,7 +191,7 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
 
               <span>Избранное</span>
             </div>
-
+</Link>
             <div className="cart">
               <IconButton>
                 <FiShoppingCart className="FiShoppingCart" />
@@ -207,6 +204,15 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
 
               <span>Корзина</span>
             </div>
+            <Link to={"/login"}>
+              {" "}
+              <div className="nav-user">
+                <IconButton>
+                  <FiUser className="FiUser" />
+                </IconButton>
+                <span>Войти</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

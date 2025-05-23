@@ -11,12 +11,17 @@ import Category from "./pages/category/Category";
 import { ToastContainer } from "react-toastify";
 import { FaLaptopHouse } from "react-icons/fa";
 import { baseURL } from "./config";
+import Comparison from "./pages/comparison/Comparison";
+import { getToken } from "./pages/service/token";
+import Liked from "./pages/liked/Liked";
+import Search from "./pages/search/Search";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
   const [data, setData] = useState(null);
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [brands, setBrands] = useState();
+  const [image,setImage]=useState(null);
 
   const getData = () => {
     const requestOptions = {
@@ -60,10 +65,32 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+
+  const galary=()=>{
+    const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${getToken()}`);
+  
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+  
+  fetch("https://abzzvx.pythonanywhere.com/galary/", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      setImage(result)
+    })
+    .catch((error) => console.error(error));
+  }
+  
+  
+
   useEffect(() => {
     getData();
     getCategory();
     getBrands();
+    galary()
   }, []);
 
 
@@ -80,11 +107,15 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home categoryInfo={categoryInfo} brands={brands} data={data} />}
+            element={<Home image={image} categoryInfo={categoryInfo} brands={brands} data={data} />}
           />
+
+<Route path="/comparison" element={<Comparison/>} />
+<Route path="/wishlist" element={<Liked/>} />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
+          <Route path="/search" element={<Search data={data}/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

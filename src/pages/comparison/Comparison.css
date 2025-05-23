@@ -1,0 +1,156 @@
+.Comparison .container {
+    padding: 40px 18px;
+  }
+  
+  .Comparison .container > span {
+    color: #828080;
+    margin-bottom: 20px;
+    display: block;
+    font-size: 14px;
+  }
+  
+  .comparison-nav h3 {
+    margin-bottom: 15px;
+  }
+  .comparsion-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .differences{
+      display: block;
+      margin-bottom: 20px;
+  }
+  
+  
+  
+  
+  
+  /* card */
+  
+  
+  .comparsion-cards{
+      display: flex;
+      align-items: center;
+      gap:20px;
+      margin-bottom: 15px;
+  }
+  
+  .comparsion-cards .card {
+      position: relative;
+    width: 230px;
+    background-color: white;
+    text-align: center;
+    border: 1px solid #b7b0b04b;
+    border-radius: 3px;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  
+  .delete{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid #c8c8c868;
+  }
+  .delete:hover{
+      background-color: #c8c8c868;
+  
+  }
+  
+  
+  .cart_main_info {
+    height: 295px;
+  }
+  .card-image img {
+    /* background-color: aqua; */
+    padding: 15px;
+    width: 180px;
+    height: 200px;
+  
+    margin: 0 auto;
+  }
+  .product-price {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .product-price span {
+    font-weight: 600;
+    color: var(--red);
+  }
+  .product-price h5 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #b7b0b0d6;
+  }
+  .product-title {
+    margin: 0 auto;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+  .product-menu {
+    border-top: 1px solid #b7b0b04b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 40px;
+  }
+  .product-menu button {
+    background-color: white;
+    border: none;
+  }
+  
+  .product-menu .borderLeft {
+    color: #b7b0b04b;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 0px 7px #cfcfcf9f;
+  }
+  
+  .comparsionPlus {
+      background-color: var(--red) !important;
+  }
+  
+  
+  /* .table */
+  .table-comparsion h3{
+      margin-bottom: 13px;
+  }
+  
+  
+  table {
+      border-collapse: collapse;
+      width: 80%;
+      border: none;
+    }
+  
+  th, td {
+      padding: 10px;
+    text-align: center;
+    border: none;               
+    border-bottom: 1px solid #d2d0d084; 
+    text-align: start;
+    color: #828080;
+    font-size: 15px;
+    }
+    
+  
+  
