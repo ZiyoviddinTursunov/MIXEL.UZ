@@ -21,16 +21,22 @@ function App() {
   const [data, setData] = useState(null);
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [brands, setBrands] = useState();
-
+  const [dataLike, setDataLike] = useState(null);
 
   const getData = () => {
-    
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
     const requestOptions = {
       method: "GET",
+      headers: myHeaders,
       redirect: "follow",
     };
 
-    fetch(`${baseURL}/products/`, requestOptions)
+    fetch(
+      "https://abzzvx.pythonanywhere.com/products/?page_size=100",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         setData(result);
@@ -66,16 +72,30 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+  const likedData = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
 
-  
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/liked-items/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setDataLike(result);
+      })
+      .catch((error) => console.error(error));
+  };
 
   useEffect(() => {
     getData();
     getCategory();
     getBrands();
-
+    likedData();
   }, []);
-
 
   return (
     <>
@@ -84,21 +104,24 @@ function App() {
           setModalCtgry={setModalCtgry}
           modalCtgry={modalCtgry}
           categoryInfo={categoryInfo}
+          dataLike={dataLike}
         />
         {modalCtgry && <Modalctgry />}
         <ToastContainer autoClose={1000} />
         <Routes>
           <Route
             path="/"
-            element={<Home  categoryInfo={categoryInfo} brands={brands} data={data} />}
+            element={
+              <Home likedData={likedData} getData={getData} categoryInfo={categoryInfo} brands={brands} data={data} />
+            }
           />
 
-<Route path="/comparison" element={<Comparison/>} />
-<Route path="/wishlist" element={<Liked/>} />
+          <Route path="/comparison" element={<Comparison />} />
+          <Route path="/wishlist" element={<Liked  dataLike={dataLike}/>} />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/search" element={<Search data={data}/>} />
+          <Route path="/search" element={<Search data={data} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

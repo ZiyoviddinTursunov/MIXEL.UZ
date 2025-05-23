@@ -10,7 +10,7 @@ import { GoArrowRight } from "react-icons/go";
 import { HiH1 } from "react-icons/hi2";
 import { baseURL } from "../../config";
 
-function Home({ categoryInfo, brands, data }) {
+function Home({ categoryInfo, brands, data,getData,likedData }) {
   const [galery, setGalery] = useState(null);
 
   const getGalery = () => {
@@ -73,8 +73,8 @@ function Home({ categoryInfo, brands, data }) {
               </button>
             </div>
             <div className="cards01">
-              {data?.results.map((item,index) => {
-                return <Card key={index}  item={item} />;
+              {data?.results?.map((item,index) => {
+                return <Card likedData={likedData} getData={getData} key={index}  item={item} />;
               })}
             </div>
           </div>
@@ -145,8 +145,8 @@ function Home({ categoryInfo, brands, data }) {
               </button>
             </div>
             <div className="cards01">
-              {data?.results.slice(0, 10).map((item,index) => {
-                return <Card key={index} item={item} />;
+              {data?.results?.slice(0, 10).map((item,index) => {
+                return <Card likedData={likedData} getData={getData} key={index} item={item} />;
               })}
             </div>
           </div>
@@ -162,8 +162,8 @@ function Home({ categoryInfo, brands, data }) {
             <div className="divCard5">
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
-                {data?.results.slice(6, 12).map((item,index) => {
-                  return <Card key={index} item={item} />;
+                {data?.results?.slice(6, 12).map((item,index) => {
+                  return <Card likedData={likedData} getData={getData} key={index} item={item} />;
                 })}
               </div>
             </div>

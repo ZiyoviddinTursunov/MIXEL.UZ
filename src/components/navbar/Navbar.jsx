@@ -23,7 +23,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
+function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -136,8 +136,8 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
             <div className="searchInp">
               <input
                 value={text}
-                onClick={()=>{
-                  navigate("/search")
+                onClick={() => {
+                  navigate("/search");
                 }}
                 onChange={(e) => setText(e.target.value)}
                 type="text"
@@ -162,36 +162,34 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           </div>
 
           <div className="nav1_iconsMenu">
-           
+            <Link to={"/comparison"}>
+              <div className="comparison">
+                <IconButton>
+                  <FaBalanceScale className="FaBalanceScale" />
+                  <CartBadge
+                    badgeContent={1}
+                    color="primary"
+                    overlap="circular"
+                  />
+                </IconButton>
 
-          <Link to={"/comparison"}>
-       <div className="comparison">
-              <IconButton>
-                <FaBalanceScale className="FaBalanceScale" />
-                <CartBadge
-                  badgeContent={1}
-                  color="primary"
-                  overlap="circular"
-                />
-              </IconButton>
-
-              <span>Сравнение</span>
-            </div></Link>
+                <span>Сравнение</span>
+              </div>
+            </Link>
             <Link to={"/wishlist"}>
+              <div className="likeProduct">
+                <IconButton>
+                  <FaRegHeart className="FaRegHeart" />
+                  <CartBadge
+                    badgeContent={dataLike?.count}
+                    color="primary"
+                    overlap="circular"
+                  />
+                </IconButton>
 
-<div className="likeProduct">
-              <IconButton>
-                <FaRegHeart className="FaRegHeart" />
-                <CartBadge
-                  badgeContent={1}
-                  color="primary"
-                  overlap="circular"
-                />
-              </IconButton>
-
-              <span>Избранное</span>
-            </div>
-</Link>
+                <span>Избранное</span>
+              </div>
+            </Link>
             <div className="cart">
               <IconButton>
                 <FiShoppingCart className="FiShoppingCart" />
@@ -234,9 +232,10 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           </Box>
 
           <ul className="categoryMenuLink">
-            {categoryInfo?.results?.map((item,index) => {
+            {categoryInfo?.results?.map((item, index) => {
               return (
-                <li key={index}
+                <li
+                  key={index}
                   onClick={() => {
                     navigate("/category");
                   }}

@@ -1,5 +1,9 @@
 .Liked .container{
     padding: 70px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
     }
     
     .loader-wishlist.activWishlist{
