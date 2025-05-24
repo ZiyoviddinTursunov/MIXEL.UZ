@@ -12,6 +12,8 @@ import Slider from "@mui/material/Slider";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
 
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 
 
@@ -134,9 +136,13 @@ function Category() {
                </li>
                 </ul>
               </div>
-            <button className="apply">
-        
-            </button>
+
+            <Stack spacing={2} direction="row">
+
+      <Button variant="contained">Apply</Button>
+
+    </Stack>
+
             </div>
           </div>
         </div>

@@ -127,7 +127,14 @@
 .nalichi p {
   font-size: 13px;
 }
-.apply {
+/* .apply {
   background-color: var(--red);
   border: none;
-}
+} */
+ .MuiButton-colorPrimary{
+  background-color: var(--red) !important;
+  width: 200px !important;
+ }
+ .MuiSlider-colorPrimary{
+  color: var(--red) !important;
+ }
