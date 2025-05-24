@@ -104,11 +104,7 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
           </Link>
 
           <div className="NavSearch">
-            <div className="category">
-              <span>Все категории</span>
-              <MdOutlineKeyboardArrowDown />
-              <span className="divider">|</span>
-            </div>
+         
 
             <div className="searchInp">
               <input
