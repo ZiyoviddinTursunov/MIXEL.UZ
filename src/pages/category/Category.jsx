@@ -5,7 +5,27 @@ import { TbCoins } from "react-icons/tb";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import { CiGrid2H, CiGrid41 } from "react-icons/ci";
 
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
 function Category() {
+  function valuetext(value) {
+    return `${value}°C`;
+  }
+
+  const [view, setView] = React.useState("list");
+  const handleViewChange = (event, nextView) => {
+    setView(nextView);
+  };
+
+  const [value, setValue] = React.useState([20, 37]);
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <div className="categories">
       <div className="container">
@@ -25,7 +45,7 @@ function Category() {
         </div>
 
         <div className="ctgry_main_info">
-          <h2>Смартфоны в Ташкенте</h2>
+          <h3>Смартфоны в Ташкенте</h3>
           <div className="ctgry_ordering">
             <p>
               <span>
@@ -38,12 +58,20 @@ function Category() {
               </span>
             </p>
             <p>
-              <span>
-                <CiGrid41 className="coin" />
-              </span>
-              <span>
-                <CiGrid2H className="coin" />
-              </span>
+              <ToggleButtonGroup
+                className="ToggleButtonGroup"
+                orientation="horizontal"
+                value={view}
+                exclusive
+                onChange={handleViewChange}
+              >
+                <ToggleButton value="list" aria-label="list">
+                  <CiGrid41 className="coin" />
+                </ToggleButton>
+                <ToggleButton value="module" aria-label="module">
+                  <CiGrid2H className="coin" />
+                </ToggleButton>
+              </ToggleButtonGroup>
             </p>
           </div>
         </div>
@@ -52,37 +80,52 @@ function Category() {
           <div className="features">
             <div className="features_info">
               <div>
-                <h5 className="feature_title">Цена (cум)</h5>
+                <h5 className="feature_title">Price (uzs)</h5>
                 <div className="price_div">
-                  <span>от 300 000</span>
-                  <span>до 103 300 000</span>
+                  <span> from 100 000</span>
+                  <span>until 20 000 000</span>
                 </div>
-                <input type="range" name="" id="" />
+                <Box sx={{ width: 230 }}>
+                  <Slider
+                    getAriaLabel={() => "Temperature range"}
+                    value={value}
+                    min={10000}
+                    max={5000000}
+                    onChange={handleSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                  />
+                </Box>
               </div>
 
               <div>
-                <h5 className="feature_title">Наличие</h5>
-                <div className="nalichi">
-                  <input type="checkbox" name="" id="" />
-                  <p>Забрать сегодня</p>
-                </div>
-              </div>
-
-              <div>
-                <h5 className="feature_title">Бренд</h5>
+                <h5 className="feature_title">Brand</h5>
                 <ul>
                   <li>
-                    <input type="checkbox" />  <label htmlFor="">LG (30)</label>
+                    <Checkbox
+                        {...label}
+                        defaultChecked
+                        sx={{
+                          color: pink[800],
+                          "&.Mui-checked": {
+                            color: pink[600],
+                          },
+                        }}
+                      /><label htmlFor="">LG (30)</label>
                   </li>
                   <li>
-                    <input type="checkbox" />  <label htmlFor="">Samsung (30)</label>
-                  </li>
-                  <li>
-                    <input type="checkbox" />  <label htmlFor="">Artel (7)</label>
-                  </li>
-                  <li>
-                    <input type="checkbox" /> <label htmlFor="">Huawei (30)</label> 
-                  </li>
+                 
+                 <Checkbox
+                     {...label}
+                     defaultChecked
+                     sx={{
+                       color: pink[800],
+                       "&.Mui-checked": {
+                         color: pink[600],
+                       },
+                     }}
+                   /><label htmlFor="">LG (30)</label>
+               </li>
                 </ul>
               </div>
             </div>
