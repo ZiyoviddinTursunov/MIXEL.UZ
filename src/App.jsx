@@ -22,6 +22,7 @@ function App() {
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [brands, setBrands] = useState();
   const [dataLike, setDataLike] = useState(null);
+  const [comparison, setComparison] = useState(null);
 
   const getData = () => {
     const myHeaders = new Headers();
@@ -89,7 +90,23 @@ function App() {
       })
       .catch((error) => console.error(error));
   };
+const comparisonData=()=>{
+  const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
 
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("https://abzzvx.pythonanywhere.com/versus-items/", requestOptions)
+  .then((response) => response.text())
+  .then((result) => {
+    setComparison(result)
+  })
+  .catch((error) => console.error(error));
+}
   useEffect(() => {
     getData();
     getCategory();
@@ -100,8 +117,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar getData={getData}
-        data={data}
+        <Navbar
+          getData={getData}
+          data={data}
           setModalCtgry={setModalCtgry}
           modalCtgry={modalCtgry}
           categoryInfo={categoryInfo}
@@ -113,12 +131,27 @@ function App() {
           <Route
             path="/"
             element={
-              <Home likedData={likedData} getData={getData} categoryInfo={categoryInfo} brands={brands} data={data} />
+              <Home
+                likedData={likedData}
+                getData={getData}
+                categoryInfo={categoryInfo}
+                brands={brands}
+                data={data}
+              />
             }
           />
 
-          <Route path="/comparison" element={<Comparison />} />
-          <Route path="/wishlist" element={<Liked  dataLike={dataLike} likedData={likedData} getData={getData}/>} />
+          <Route path="/comparison" element={<Comparison comparison={comparison}/>} />
+          <Route
+            path="/wishlist"
+            element={
+              <Liked
+                dataLike={dataLike}
+                likedData={likedData}
+                getData={getData}
+              />
+            }
+          />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
