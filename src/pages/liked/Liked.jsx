@@ -3,7 +3,7 @@ import "./Liked.css"
 import { FaHeart } from 'react-icons/fa'
 import Card from '../../components/cards/Card';
 
-function Liked({dataLike,getData,likedData}) {
+function Liked({dataLike,getData,likedData,setCardModal}) {
 
   return (
     <div className='Liked'>
@@ -12,6 +12,7 @@ function Liked({dataLike,getData,likedData}) {
   dataLike?.results?.length > 0 ? (
     dataLike.results.map((item) => (
       <Card
+      setCardModal={setCardModal}
         likedData={likedData}
         getData={getData}
         key={item.id}

@@ -61,7 +61,11 @@ function Card({ item, getData, likedData,setCardModal }) {
           </div>
         </div>
         <div className="product-menu">
-          <button onClick={(e) => e.stopPropagation()}>
+          <button onClick={(e) => {
+            
+            e.stopPropagation()
+            setCardModal(true)
+          }}>
             <Checkbox
               {...label}
               icon={<FaCartShopping />}

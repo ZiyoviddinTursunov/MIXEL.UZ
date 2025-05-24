@@ -138,7 +138,7 @@ function App() {
           <Route
             path="/wishlist"
             element={
-              <Liked dataLike={dataLike} likedData={likedData} getData={getData} />
+              <Liked dataLike={dataLike} likedData={likedData} getData={getData} setCardModal={setCardModal}/>
             }
           />
           <Route path="/singup" element={<SingPu />} />
