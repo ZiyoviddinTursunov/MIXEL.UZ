@@ -10,7 +10,7 @@ import { GoArrowRight } from "react-icons/go";
 import { HiH1 } from "react-icons/hi2";
 import { baseURL } from "../../config";
 
-function Home({ categoryInfo, brands, data }) {
+function Home({ categoryInfo, brands, data,getData,likedData }) {
   const [galery, setGalery] = useState(null);
 
   const getGalery = () => {
@@ -36,6 +36,7 @@ function Home({ categoryInfo, brands, data }) {
       <div className="hero">
         <div className="container">
           <div className="hero_slider">
+<<<<<<< HEAD
             <Swiper
               spaceBetween={30}
               centeredSlides={true}
@@ -58,6 +59,37 @@ function Home({ categoryInfo, brands, data }) {
                 );
               })}
             </Swiper>
+=======
+{
+  data  ? <Swiper
+             
+  spaceBetween={30}
+  centeredSlides={true}
+  autoplay={{
+    delay: 2500,
+    disableOnInteraction: false,
+  }}
+  pagination={{
+    clickable: true,
+  }}
+  navigation={true}
+  modules={[Autoplay, Pagination, Navigation]}
+  className="mySwiper"
+>
+  {galery?.map((item) => {
+    return (
+      <SwiperSlide>
+        <img src={item.image} alt="" />
+      </SwiperSlide>
+    );
+  })}
+</Swiper> : [...Array(1)].map((_, i) => (
+        <div key={i} className="gradient-placeholder"></div>
+      ))
+}
+
+            
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
           </div>
         </div>
       </div>
@@ -71,9 +103,25 @@ function Home({ categoryInfo, brands, data }) {
               </button>
             </div>
             <div className="cards01">
+<<<<<<< HEAD
               {data?.results.map((item, index) => {
                 return <Card key={index} item={item} />;
               })}
+=======
+              {
+                data ? data?.results?.map((item,index) => {
+                  return <Card likedData={likedData} getData={getData} key={index}  item={item} />;
+                }) :    [...Array(10)].map((_,i)=>{
+                  return <div key={i} className="gradient-placeholder"></div>
+                 })
+                
+              }
+         
+      
+         
+            
+       
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
             </div>
           </div>
         </section>
@@ -143,8 +191,13 @@ function Home({ categoryInfo, brands, data }) {
               </button>
             </div>
             <div className="cards01">
+<<<<<<< HEAD
               {data?.results.slice(0, 10).map((item, index) => {
                 return <Card key={index} item={item} />;
+=======
+              {data?.results?.slice(0, 10).map((item,index) => {
+                return <Card likedData={likedData} getData={getData} key={index} item={item} />;
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
               })}
             </div>
           </div>
@@ -161,8 +214,13 @@ function Home({ categoryInfo, brands, data }) {
             <div className="divCard5">
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
+<<<<<<< HEAD
                 {data?.results.slice(6, 12).map((item, index) => {
                   return <Card key={index} item={item} />;
+=======
+                {data?.results?.slice(6, 12).map((item,index) => {
+                  return <Card likedData={likedData} getData={getData} key={index} item={item} />;
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
                 })}
               </div>
             </div>

@@ -8,6 +8,7 @@
   justify-content: start;
   align-items: center;
   margin-bottom: 15px;
+  gap: 60px;
 }
 
 .ctgry_main_info h2 {
@@ -20,13 +21,24 @@
   justify-content: space-between;
 }
 
-.ctgry_ordering p {
+.ctgry_ordering div {
   display: flex;
   align-items: center;
   gap: 30px;
   color: rgba(144, 144, 144, 1);
   font-size: 14px;
 }
+
+
+.ctgry_ordering div:nth-child(2) .ToggleButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(144, 144, 144, 1);
+  font-size: 14px;
+}
+
+
 
 .ctgry_ordering span {
   display: flex;
@@ -45,7 +57,7 @@
 }
 
 .features {
-  width: 28%;
+  width: 280px;
   border: 1px solid rgba(242, 242, 242, 1);
   border-radius: 5px;
 }
@@ -55,27 +67,28 @@
 }
 
 .feature_title {
-  font-weight: 350;
+  font-weight: 500;
+  font-size: 16px;
   margin-bottom: 20px !important;
 }
 
 .price_div {
+  display: flex;
+  align-items: center;
+  /* gap: 5px; */
   width: 100%;
   margin-bottom: 15px;
+
+  
 }
 
 .price_div span {
+  font-size: 10px;
+  font-weight: 500;
   padding: 7px 20px;
   border: 1px solid rgba(224, 224, 224, 1);
 }
 
-.price_div span:nth-child(1) {
-  border-radius: 5px 0px 0px 5px;
-  border-right: none;
-}
-.price_div span:nth-child(2) {
-  border-radius: 0px 5px 5px 0px;
-}
 
 .features_info div {
   margin-bottom: 20px;
@@ -94,3 +107,14 @@
 .nalichi p {
   font-size: 13px;
 }
+/* .apply {
+  background-color: var(--red);
+  border: none;
+} */
+ .MuiButton-colorPrimary{
+  background-color: var(--red) !important;
+  width: 200px !important;
+ }
+ .MuiSlider-colorPrimary{
+  color: var(--red) !important;
+ }

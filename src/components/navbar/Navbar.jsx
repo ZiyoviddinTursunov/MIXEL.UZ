@@ -23,7 +23,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
+function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData ,data}) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -119,13 +119,8 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
 
       {/* --- Middle nav with logo and search --- */}
       <div className="nav2">
-        <div className="container">
-          <Link to={"./"}>
-            <div className="nav_logo">
-              <img src="/imgs/Logo.svg" alt="Logo" />
-            </div>
-          </Link>
 
+<<<<<<< HEAD
           <div className="NavSearch">
             <div className="searchInp">
               <input
@@ -137,18 +132,24 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
                 type="text"
                 placeholder="Type a product name, brand, or category..."
               />
+=======
 
-              <div
-                onClick={() => {
-                  startRecognition();
-                  setActivSound(true);
-                }}
-                className={activSound ? "soundSrc activSound" : "soundSrc"}
-              >
-                <HiOutlineMicrophone className="HiOutlineMicrophone" />
-              </div>
-            </div>
+    <div className="container">
+      <Link to={"./"}>
+        <div className="nav_logo">
+          <img src="/imgs/Logo.svg" alt="Logo" />
+        </div>
+      </Link>
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
 
+      <div className="NavSearch">
+        <div className="category">
+          <span>Все категории</span>
+          <MdOutlineKeyboardArrowDown />
+          <span className="divider">|</span>
+        </div>
+
+<<<<<<< HEAD
             <button className="srcBtn">
               <IoSearch />
               <span>Search</span>
@@ -207,8 +208,77 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
                 <span>Login</span>
               </div>
             </Link>
+=======
+        <div className="searchInp">
+          <input
+            value={text}
+            onClick={() => navigate("/search")}
+            onChange={(e) => setText(e.target.value)}
+            type="text"
+            placeholder="Телефоны и бытовая техника"
+          />
+
+          <div
+            onClick={() => {
+              startRecognition();
+              setActivSound(true);
+            }}
+            className={activSound ? "soundSrc activSound" : "soundSrc"}
+          >
+            <HiOutlineMicrophone className="HiOutlineMicrophone" />
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
           </div>
         </div>
+
+        <button className="srcBtn">
+          <IoSearch />
+          <span>Поиск</span>
+        </button>
+      </div>
+
+      <div className="nav1_iconsMenu">
+        <Link to={"/comparison"}>
+          <div className="comparison">
+            <IconButton>
+              <FaBalanceScale className="FaBalanceScale" />
+              <CartBadge badgeContent={1} color="primary" overlap="circular" />
+            </IconButton>
+            <span>Сравнение</span>
+          </div>
+        </Link>
+
+        <Link to={"/wishlist"}>
+          <div className="likeProduct">
+            <IconButton>
+              <FaRegHeart className="FaRegHeart" />
+              <CartBadge badgeContent={dataLike?.count} color="primary" overlap="circular" />
+            </IconButton>
+            <span>Избранное</span>
+          </div>
+        </Link>
+
+        <div className="cart">
+          <IconButton>
+            <FiShoppingCart className="FiShoppingCart" />
+            <CartBadge badgeContent={1} color="primary" overlap="circular" />
+          </IconButton>
+          <span>Корзина</span>
+        </div>
+
+        <Link to={"/login"}>
+          <div className="nav-user">
+            <IconButton>
+              <FiUser className="FiUser" />
+            </IconButton>
+            <span>Войти</span>
+          </div>
+        </Link>
+      </div>
+    </div>
+
+
+
+    
       </div>
 
       {/* --- Category menu --- */}
@@ -228,6 +298,7 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           </Box>
 
           <ul className="categoryMenuLink">
+<<<<<<< HEAD
             {categoryInfo?.results?.map((item, index) => {
               return (
                 <li
@@ -240,6 +311,21 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
                 </li>
               );
             })}
+=======
+          {
+data ? categoryInfo?.results?.map((item, index) => (
+        <li key={index} onClick={() => navigate("/category")}>
+          <a href="#">{item.name}</a>
+        </li>
+      ))
+    : [...Array(5)].map((_, i) => (
+        <div key={i} className="gradient-placeholder"></div>
+      ))
+}
+
+          
+      
+>>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
           </ul>
         </div>
       </div>
