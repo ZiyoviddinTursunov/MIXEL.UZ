@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { FiMapPin, FiShoppingCart, FiUser } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
@@ -14,7 +14,6 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
 import { Link, useNavigate } from "react-router-dom";
-import Category from "../../pages/category/Category";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -23,7 +22,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData ,data}) {
+function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, data }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
@@ -31,19 +30,13 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData ,dat
   const navigate = useNavigate();
 
   const langFunk = (lang) => {
-    if (lang == "uz") {
-      setLangSound("uz-UZ");
-    } else if (lang == "ru") {
-      setLangSound("ru-RU");
-    } else {
-      setLangSound("en-US");
-    }
+    setLangSound(
+      lang === "uz" ? "uz-UZ" : lang === "ru" ? "ru-RU" : "en-US"
+    );
   };
 
   const startRecognition = () => {
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       setStatus("Brauzer ovozli qidiruvni qo‘llab-quvvatlamaydi.");
       return;
@@ -81,34 +74,18 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData ,dat
               <FiMapPin />
               <span>Tashkent</span>
             </li>
-            <li>
-              <a href="#">Our shop</a>
-            </li>
-            <li>
-              <a href="#">B2B sales</a>
-            </li>
-            <li>
-              <a href="#">Purchase in installments</a>
-            </li>
-            <li>
-              <a href="#">Payment methods</a>
-            </li>
-            <li>
-              <a href="#">Warranty for goods</a>
-            </li>
+            <li><a href="#">Our shop</a></li>
+            <li><a href="#">B2B sales</a></li>
+            <li><a href="#">Installments</a></li>
+            <li><a href="#">Payment</a></li>
+            <li><a href="#">Warranty</a></li>
           </ul>
-
           <div className="nav1_contact">
             <div className="phone">
               <BsTelephone />
               <span>+998 95 123 55 88</span>
             </div>
-            <select
-              onChange={(e) => {
-                langFunk(e.target.value);
-              }}
-              className="lang-select"
-            >
+            <select onChange={(e) => langFunk(e.target.value)} className="lang-select">
               <option value="ru">Рус</option>
               <option value="uz">O‘zb</option>
               <option value="en">Eng</option>
@@ -119,213 +96,107 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike,getData ,dat
 
       {/* --- Middle nav with logo and search --- */}
       <div className="nav2">
+        <div className="container">
+          <Link to="/">
+            <div className="nav_logo">
+              <img src="/imgs/Logo.svg" alt="Logo" />
+            </div>
+          </Link>
 
-<<<<<<< HEAD
           <div className="NavSearch">
+            <div className="category">
+              <span>Все категории</span>
+              <MdOutlineKeyboardArrowDown />
+              <span className="divider">|</span>
+            </div>
+
             <div className="searchInp">
               <input
                 value={text}
-                onClick={() => {
-                  navigate("/search");
-                }}
+                onClick={() => navigate("/search")}
                 onChange={(e) => setText(e.target.value)}
                 type="text"
-                placeholder="Type a product name, brand, or category..."
+                placeholder="Телефоны и бытовая техника"
               />
-=======
+              <div
+                onClick={() => {
+                  startRecognition();
+                  setActivSound(true);
+                }}
+                className={activSound ? "soundSrc activSound" : "soundSrc"}
+              >
+                <HiOutlineMicrophone />
+              </div>
+            </div>
 
-    <div className="container">
-      <Link to={"./"}>
-        <div className="nav_logo">
-          <img src="/imgs/Logo.svg" alt="Logo" />
-        </div>
-      </Link>
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
-
-      <div className="NavSearch">
-        <div className="category">
-          <span>Все категории</span>
-          <MdOutlineKeyboardArrowDown />
-          <span className="divider">|</span>
-        </div>
-
-<<<<<<< HEAD
             <button className="srcBtn">
               <IoSearch />
-              <span>Search</span>
+              <span>Поиск</span>
             </button>
           </div>
 
           <div className="nav1_iconsMenu">
-            <Link to={"/comparison"}>
+            <Link to="/comparison">
               <div className="comparison">
                 <IconButton>
-                  <FaBalanceScale className="FaBalanceScale" />
-                  <CartBadge
-                    badgeContent={1}
-                    color="primary"
-                    overlap="circular"
-                  />
+                  <FaBalanceScale />
+                  <CartBadge badgeContent={1} color="primary" overlap="circular" />
                 </IconButton>
-
-                <span>Comparison</span>
+                <span>Сравнение</span>
               </div>
             </Link>
-            <Link to={"/wishlist"}>
+
+            <Link to="/wishlist">
               <div className="likeProduct">
                 <IconButton>
-                  <FaRegHeart className="FaRegHeart" />
-                  <CartBadge
-                    badgeContent={1}
-                    color="primary"
-                    overlap="circular"
-                  />
+                  <FaRegHeart />
+                  <CartBadge badgeContent={dataLike?.count || 0} color="primary" overlap="circular" />
                 </IconButton>
-
-                <span>Favourites</span>
+                <span>Избранное</span>
               </div>
             </Link>
-            <Link to={"/cart"}>
+
+            <Link to="/cart">
               <div className="cart">
                 <IconButton>
-                  <FiShoppingCart className="FiShoppingCart" />
-                  <CartBadge
-                    badgeContent={1}
-                    color="primary"
-                    overlap="circular"
-                  />
+                  <FiShoppingCart />
+                  <CartBadge badgeContent={1} color="primary" overlap="circular" />
                 </IconButton>
-
-                <span>Cart</span>
+                <span>Корзина</span>
               </div>
             </Link>
-            <Link to={"/login"}>
-              {" "}
+
+            <Link to="/login">
               <div className="nav-user">
                 <IconButton>
-                  <FiUser className="FiUser" />
+                  <FiUser />
                 </IconButton>
-                <span>Login</span>
+                <span>Войти</span>
               </div>
             </Link>
-=======
-        <div className="searchInp">
-          <input
-            value={text}
-            onClick={() => navigate("/search")}
-            onChange={(e) => setText(e.target.value)}
-            type="text"
-            placeholder="Телефоны и бытовая техника"
-          />
-
-          <div
-            onClick={() => {
-              startRecognition();
-              setActivSound(true);
-            }}
-            className={activSound ? "soundSrc activSound" : "soundSrc"}
-          >
-            <HiOutlineMicrophone className="HiOutlineMicrophone" />
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
           </div>
         </div>
-
-        <button className="srcBtn">
-          <IoSearch />
-          <span>Поиск</span>
-        </button>
-      </div>
-
-      <div className="nav1_iconsMenu">
-        <Link to={"/comparison"}>
-          <div className="comparison">
-            <IconButton>
-              <FaBalanceScale className="FaBalanceScale" />
-              <CartBadge badgeContent={1} color="primary" overlap="circular" />
-            </IconButton>
-            <span>Сравнение</span>
-          </div>
-        </Link>
-
-        <Link to={"/wishlist"}>
-          <div className="likeProduct">
-            <IconButton>
-              <FaRegHeart className="FaRegHeart" />
-              <CartBadge badgeContent={dataLike?.count} color="primary" overlap="circular" />
-            </IconButton>
-            <span>Избранное</span>
-          </div>
-        </Link>
-
-        <div className="cart">
-          <IconButton>
-            <FiShoppingCart className="FiShoppingCart" />
-            <CartBadge badgeContent={1} color="primary" overlap="circular" />
-          </IconButton>
-          <span>Корзина</span>
-        </div>
-
-        <Link to={"/login"}>
-          <div className="nav-user">
-            <IconButton>
-              <FiUser className="FiUser" />
-            </IconButton>
-            <span>Войти</span>
-          </div>
-        </Link>
-      </div>
-    </div>
-
-
-
-    
       </div>
 
       {/* --- Category menu --- */}
       <div className="nav3">
         <div className="container">
           <Box sx={{ "& button": { m: 1 } }}>
-            <div
-              onClick={() => {
-                setModalCtgry(!modalCtgry);
-              }}
-            >
-              <Button size="small">
-                {" "}
-                <TfiMenuAlt className="TfiMenuAlt " /> <span>Categories</span>
-              </Button>
-            </div>
+            <Button size="small" onClick={() => setModalCtgry(!modalCtgry)}>
+              <TfiMenuAlt /> <span>Categories</span>
+            </Button>
           </Box>
 
           <ul className="categoryMenuLink">
-<<<<<<< HEAD
-            {categoryInfo?.results?.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  onClick={() => {
-                    navigate("/category");
-                  }}
-                >
-                  <a href="#">{item.name}</a>
-                </li>
-              );
-            })}
-=======
-          {
-data ? categoryInfo?.results?.map((item, index) => (
-        <li key={index} onClick={() => navigate("/category")}>
-          <a href="#">{item.name}</a>
-        </li>
-      ))
-    : [...Array(5)].map((_, i) => (
-        <div key={i} className="gradient-placeholder"></div>
-      ))
-}
-
-          
-      
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
+            {data
+              ? categoryInfo?.results?.map((item, index) => (
+                  <li key={index} onClick={() => navigate("/category")}>
+                    <a href="#">{item.name}</a>
+                  </li>
+                ))
+              : [...Array(5)].map((_, i) => (
+                  <div key={i} className="gradient-placeholder"></div>
+                ))}
           </ul>
         </div>
       </div>

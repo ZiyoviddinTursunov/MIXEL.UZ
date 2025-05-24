@@ -7,19 +7,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { GoArrowRight } from "react-icons/go";
-import { HiH1 } from "react-icons/hi2";
 import { baseURL } from "../../config";
 
-function Home({ categoryInfo, brands, data,getData,likedData }) {
+function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
   const [galery, setGalery] = useState(null);
 
   const getGalery = () => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(`${baseURL}/galary/`, requestOptions)
+    fetch(`${baseURL}/galary/`)
       .then((response) => response.json())
       .then((result) => {
         setGalery(result.results);
@@ -36,64 +30,38 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
       <div className="hero">
         <div className="container">
           <div className="hero_slider">
-<<<<<<< HEAD
-            <Swiper
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              modules={[Autoplay, Pagination, Navigation]}
-              className="mySwiper"
-            >
-              {galery?.map((item) => {
-                return (
-                  <SwiperSlide>
+            {data ? (
+              <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
+              >
+                {galery?.map((item, index) => (
+                  <SwiperSlide key={index}>
                     <img src={item.image} alt="" />
                   </SwiperSlide>
-                );
-              })}
-            </Swiper>
-=======
-{
-  data  ? <Swiper
-             
-  spaceBetween={30}
-  centeredSlides={true}
-  autoplay={{
-    delay: 2500,
-    disableOnInteraction: false,
-  }}
-  pagination={{
-    clickable: true,
-  }}
-  navigation={true}
-  modules={[Autoplay, Pagination, Navigation]}
-  className="mySwiper"
->
-  {galery?.map((item) => {
-    return (
-      <SwiperSlide>
-        <img src={item.image} alt="" />
-      </SwiperSlide>
-    );
-  })}
-</Swiper> : [...Array(1)].map((_, i) => (
-        <div key={i} className="gradient-placeholder"></div>
-      ))
-}
-
-            
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
+                ))}
+              </Swiper>
+            ) : (
+              [...Array(1)].map((_, i) => (
+                <div key={i} className="gradient-placeholder"></div>
+              ))
+            )}
           </div>
         </div>
       </div>
+
       <main>
+        {/* Last Products */}
         <section>
           <div className="container">
             <div className="section1_nav">
@@ -103,29 +71,24 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
               </button>
             </div>
             <div className="cards01">
-<<<<<<< HEAD
-              {data?.results.map((item, index) => {
-                return <Card key={index} item={item} />;
-              })}
-=======
-              {
-                data ? data?.results?.map((item,index) => {
-                  return <Card likedData={likedData} getData={getData} key={index}  item={item} />;
-                }) :    [...Array(10)].map((_,i)=>{
-                  return <div key={i} className="gradient-placeholder"></div>
-                 })
-                
-              }
-         
-      
-         
-            
-       
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
+              {data
+                ? data?.results?.map((item, index) => (
+                    <Card 
+                    setCardModal={setCardModal}
+                      likedData={likedData}
+                      getData={getData}
+                      key={index}
+                      item={item}
+                    />
+                  ))
+                : [...Array(10)].map((_, i) => (
+                    <div key={i} className="gradient-placeholder"></div>
+                  ))}
             </div>
           </div>
         </section>
 
+        {/* Categories */}
         <section className="section2">
           <div className="container">
             <h3>Popular categories</h3>
@@ -142,21 +105,20 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
                 modules={[Autoplay, Navigation]}
                 className="mySwiper"
               >
-                {categoryInfo?.results?.map((item) => {
-                  return (
-                    <SwiperSlide>
-                      <div className="boxCategory">
-                        <h4>{item.name}</h4>
-                        <img src={item.image} alt="" />
-                      </div>
-                    </SwiperSlide>
-                  );
-                })}
+                {categoryInfo?.results?.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="boxCategory">
+                      <h4>{item.name}</h4>
+                      <img src={item.image} alt="" />
+                    </div>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           </div>
         </section>
 
+        {/* Featured Product */}
         <section className="setion3">
           <div className="container">
             <div className="product-card3">
@@ -182,6 +144,7 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
           </div>
         </section>
 
+        {/* Cheaper Products */}
         <section>
           <div className="container">
             <div className="section1_nav">
@@ -191,18 +154,20 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
               </button>
             </div>
             <div className="cards01">
-<<<<<<< HEAD
-              {data?.results.slice(0, 10).map((item, index) => {
-                return <Card key={index} item={item} />;
-=======
-              {data?.results?.slice(0, 10).map((item,index) => {
-                return <Card likedData={likedData} getData={getData} key={index} item={item} />;
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
-              })}
+              {data?.results?.slice(0, 10).map((item, index) => (
+                <Card 
+                setCardModal={setCardModal}
+                  likedData={likedData}
+                  getData={getData}
+                  key={index}
+                  item={item}
+                />
+              ))}
             </div>
           </div>
         </section>
 
+        {/* Recommendations */}
         <section className="section5">
           <div className="container">
             <div className="section1_nav">
@@ -214,19 +179,21 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
             <div className="divCard5">
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
-<<<<<<< HEAD
-                {data?.results.slice(6, 12).map((item, index) => {
-                  return <Card key={index} item={item} />;
-=======
-                {data?.results?.slice(6, 12).map((item,index) => {
-                  return <Card likedData={likedData} getData={getData} key={index} item={item} />;
->>>>>>> 5bbff679be9c9183efdc9bd8182e0f6abbfeae6b
-                })}
+                {data?.results?.slice(6, 12).map((item, index) => (
+                  <Card 
+                  setCardModal={setCardModal}
+                    likedData={likedData}
+                    getData={getData}
+                    key={index}
+                    item={item}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </section>
 
+        {/* Brands */}
         <section className="section6">
           <div className="container">
             <Swiper
@@ -241,19 +208,17 @@ function Home({ categoryInfo, brands, data,getData,likedData }) {
               modules={[Autoplay, Navigation]}
               className="mySwiper"
             >
-              {brands?.results?.map((item, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <div className="brendBox">
-                      {item.image ? (
-                        <img src={item.image} alt="" />
-                      ) : (
-                        <h1>{item.name}</h1>
-                      )}
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
+              {brands?.results?.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="brendBox">
+                    {item.image ? (
+                      <img src={item.image} alt="" />
+                    ) : (
+                      <h1>{item.name}</h1>
+                    )}
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </section>
