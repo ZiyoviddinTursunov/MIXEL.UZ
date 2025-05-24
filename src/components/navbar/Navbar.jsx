@@ -79,22 +79,22 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           <ul className="nav1_link">
             <li className="location">
               <FiMapPin />
-              <span>Ташкент</span>
+              <span>Tashkent</span>
             </li>
             <li>
-              <a href="#">Наши магазины</a>
+              <a href="#">Our shop</a>
             </li>
             <li>
-              <a href="#">B2B продажи</a>
+              <a href="#">B2B sales</a>
             </li>
             <li>
-              <a href="#">Покупка в рассрочку</a>
+              <a href="#">Purchase in installments</a>
             </li>
             <li>
-              <a href="#">Способы оплаты</a>
+              <a href="#">Payment methods</a>
             </li>
             <li>
-              <a href="#">Гарантия на товары</a>
+              <a href="#">Warranty for goods</a>
             </li>
           </ul>
 
@@ -127,21 +127,15 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
           </Link>
 
           <div className="NavSearch">
-            <div className="category">
-              <span>Все категории</span>
-              <MdOutlineKeyboardArrowDown />
-              <span className="divider">|</span>
-            </div>
-
             <div className="searchInp">
               <input
                 value={text}
-                onClick={()=>{
-                  navigate("/search")
+                onClick={() => {
+                  navigate("/search");
                 }}
                 onChange={(e) => setText(e.target.value)}
                 type="text"
-                placeholder="Телефоны и бытовая техника"
+                placeholder="Type a product name, brand, or category..."
               />
 
               <div
@@ -157,60 +151,60 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
 
             <button className="srcBtn">
               <IoSearch />
-              <span>Поиск</span>
+              <span>Search</span>
             </button>
           </div>
 
           <div className="nav1_iconsMenu">
-           
+            <Link to={"/comparison"}>
+              <div className="comparison">
+                <IconButton>
+                  <FaBalanceScale className="FaBalanceScale" />
+                  <CartBadge
+                    badgeContent={1}
+                    color="primary"
+                    overlap="circular"
+                  />
+                </IconButton>
 
-          <Link to={"/comparison"}>
-       <div className="comparison">
-              <IconButton>
-                <FaBalanceScale className="FaBalanceScale" />
-                <CartBadge
-                  badgeContent={1}
-                  color="primary"
-                  overlap="circular"
-                />
-              </IconButton>
-
-              <span>Сравнение</span>
-            </div></Link>
+                <span>Comparison</span>
+              </div>
+            </Link>
             <Link to={"/wishlist"}>
+              <div className="likeProduct">
+                <IconButton>
+                  <FaRegHeart className="FaRegHeart" />
+                  <CartBadge
+                    badgeContent={1}
+                    color="primary"
+                    overlap="circular"
+                  />
+                </IconButton>
 
-<div className="likeProduct">
-              <IconButton>
-                <FaRegHeart className="FaRegHeart" />
-                <CartBadge
-                  badgeContent={1}
-                  color="primary"
-                  overlap="circular"
-                />
-              </IconButton>
+                <span>Favourites</span>
+              </div>
+            </Link>
+            <Link to={"/cart"}>
+              <div className="cart">
+                <IconButton>
+                  <FiShoppingCart className="FiShoppingCart" />
+                  <CartBadge
+                    badgeContent={1}
+                    color="primary"
+                    overlap="circular"
+                  />
+                </IconButton>
 
-              <span>Избранное</span>
-            </div>
-</Link>
-            <div className="cart">
-              <IconButton>
-                <FiShoppingCart className="FiShoppingCart" />
-                <CartBadge
-                  badgeContent={1}
-                  color="primary"
-                  overlap="circular"
-                />
-              </IconButton>
-
-              <span>Корзина</span>
-            </div>
+                <span>Cart</span>
+              </div>
+            </Link>
             <Link to={"/login"}>
               {" "}
               <div className="nav-user">
                 <IconButton>
                   <FiUser className="FiUser" />
                 </IconButton>
-                <span>Войти</span>
+                <span>Login</span>
               </div>
             </Link>
           </div>
@@ -228,15 +222,16 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo }) {
             >
               <Button size="small">
                 {" "}
-                <TfiMenuAlt className="TfiMenuAlt " /> <span>Категории</span>
+                <TfiMenuAlt className="TfiMenuAlt " /> <span>Categories</span>
               </Button>
             </div>
           </Box>
 
           <ul className="categoryMenuLink">
-            {categoryInfo?.results?.map((item,index) => {
+            {categoryInfo?.results?.map((item, index) => {
               return (
-                <li key={index}
+                <li
+                  key={index}
                   onClick={() => {
                     navigate("/category");
                   }}

@@ -15,6 +15,8 @@ import Comparison from "./pages/comparison/Comparison";
 import { getToken } from "./pages/service/token";
 import Liked from "./pages/liked/Liked";
 import Search from "./pages/search/Search";
+import Oneproduct from "./pages/oneproduct/Oneproduct";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
@@ -22,9 +24,7 @@ function App() {
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [brands, setBrands] = useState();
 
-
   const getData = () => {
-    
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -66,16 +66,11 @@ function App() {
       .catch((error) => console.error(error));
   };
 
-
-  
-
   useEffect(() => {
     getData();
     getCategory();
     getBrands();
-
   }, []);
-
 
   return (
     <>
@@ -90,15 +85,21 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home  categoryInfo={categoryInfo} brands={brands} data={data} />}
+            element={
+              <Home categoryInfo={categoryInfo} brands={brands} data={data} />
+            }
           />
 
-<Route path="/comparison" element={<Comparison/>} />
-<Route path="/wishlist" element={<Liked/>} />
+          <Route path="/comparison" element={<Comparison />} />
+          <Route path="/wishlist" element={<Liked />} />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/search" element={<Search data={data}/>} />
+          <Route path="/search" element={<Search data={data} />} />
+          <Route path="/product/:id" element={<Oneproduct/> } />
+          <Route path="/cart" element={<Cart/> } />
+
+
         </Routes>
         <Footer />
       </BrowserRouter>

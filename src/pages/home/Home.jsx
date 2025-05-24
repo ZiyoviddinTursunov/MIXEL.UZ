@@ -22,7 +22,6 @@ function Home({ categoryInfo, brands, data }) {
     fetch(`${baseURL}/galary/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-
         setGalery(result.results);
       })
       .catch((error) => console.error(error));
@@ -38,7 +37,6 @@ function Home({ categoryInfo, brands, data }) {
         <div className="container">
           <div className="hero_slider">
             <Swiper
-             
               spaceBetween={30}
               centeredSlides={true}
               autoplay={{
@@ -67,14 +65,14 @@ function Home({ categoryInfo, brands, data }) {
         <section>
           <div className="container">
             <div className="section1_nav">
-              <h3>Горящие предложения</h3>
+              <h3>Last products</h3>
               <button>
-                Посмотреть все <GoArrowRight />
+                View all products <GoArrowRight />
               </button>
             </div>
             <div className="cards01">
-              {data?.results.map((item,index) => {
-                return <Card key={index}  item={item} />;
+              {data?.results.map((item, index) => {
+                return <Card key={index} item={item} />;
               })}
             </div>
           </div>
@@ -82,11 +80,10 @@ function Home({ categoryInfo, brands, data }) {
 
         <section className="section2">
           <div className="container">
-            <h3>Популярные категории</h3>
+            <h3>Popular categories</h3>
             <div className="boxCategorys">
               <Swiper
                 slidesPerView={4}
-               
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
@@ -136,25 +133,27 @@ function Home({ categoryInfo, brands, data }) {
             </div>
           </div>
         </section>
+
         <section>
           <div className="container">
             <div className="section1_nav">
-              <h3>Товары дешевле:</h3>
+              <h3>Cheaper products:</h3>
               <button>
-                Посмотреть все <GoArrowRight />
+                View all products <GoArrowRight />
               </button>
             </div>
             <div className="cards01">
-              {data?.results.slice(0, 10).map((item,index) => {
+              {data?.results.slice(0, 10).map((item, index) => {
                 return <Card key={index} item={item} />;
               })}
             </div>
           </div>
         </section>
+
         <section className="section5">
           <div className="container">
             <div className="section1_nav">
-              <h3>Рекомендуем</h3>
+              <h3>We recommend:</h3>
               <button>
                 Посмотреть все <GoArrowRight />
               </button>
@@ -162,7 +161,7 @@ function Home({ categoryInfo, brands, data }) {
             <div className="divCard5">
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
-                {data?.results.slice(6, 12).map((item,index) => {
+                {data?.results.slice(6, 12).map((item, index) => {
                   return <Card key={index} item={item} />;
                 })}
               </div>
@@ -174,7 +173,6 @@ function Home({ categoryInfo, brands, data }) {
           <div className="container">
             <Swiper
               slidesPerView={5}
-             
               spaceBetween={30}
               centeredSlides={true}
               autoplay={{
@@ -185,7 +183,7 @@ function Home({ categoryInfo, brands, data }) {
               modules={[Autoplay, Navigation]}
               className="mySwiper"
             >
-              {brands?.results?.map((item,index) => {
+              {brands?.results?.map((item, index) => {
                 return (
                   <SwiperSlide key={index}>
                     <div className="brendBox">

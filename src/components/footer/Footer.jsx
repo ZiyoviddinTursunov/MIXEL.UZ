@@ -12,9 +12,11 @@ function Footer() {
       <div className="container">
         <div className="footer-header">
           <img src="/imgs/footerLogo.svg" alt="" />
-          <p>График работы колл-центра Понедельник - Суббота: 9:00–18:00</p>
+          <p>
+            Call center working hours <br /> Monday - Saturday: 9:00–18:00
+          </p>
           <span>
-            Колл-центр: <br />+ 998 (71) 205-93-93{" "}
+            Call center: <br />+ 998 (71) 205-93-93{" "}
           </span>
           <div className="footer-social">
             <div className="socialBox">
@@ -32,62 +34,59 @@ function Footer() {
             </div>
           </div>
         </div>
+
         <div className="footer-link">
           <ul className="footer_ul">
-            <h5>Категории </h5>
+            <h5>Categories </h5>
             <li>
-              <a href="">Ноутбуки</a>
+              <a href="">Laptops</a>
             </li>
             <li>
-              <a href="">Игровые кресла</a>
+              <a href="">Gaming chairs</a>
             </li>
             <li>
-              <a href="">Телефоны</a>
+              <a href="">Telephones</a>
             </li>
             <li>
-              <a href="">Моноблоки</a>
-            </li>
-            <li>
-              <a href="">Модули памяти</a>
+              <a href="">Dress</a>
             </li>
           </ul>
+
           <ul className="footer_ul">
-            <h5>Общее </h5>
+            <h5>General </h5>
             <li>
-              <a href="">Новости</a>
+              <a href="">News</a>
             </li>
             <li>
-              <a href="">О нас</a>
+              <a href="">About us</a>
             </li>
             <li>
-              <a href="">Наши магазины</a>
+              <a href="">Our shop</a>
             </li>
             <li>
-              <a href="">Политика конфиденциальности</a>
+              <a href="">Privacy Policy</a>
             </li>
             <li>
-              <a href="">Правила программы лояльности</a>
-            </li>
-            <li>
-              <a href="">Контакты</a>
+              <a href="">Contact</a>
             </li>
           </ul>
+
           <ul className="footer_ul">
-            <h5>Покупателям </h5>
+            <h5>For customers </h5>
             <li>
-              <a href="">Покупка в рассрочку</a>
+              <a href="">Purchase in installments</a>
             </li>
             <li>
               <a href="">Доставка и оплата</a>
             </li>
             <li>
-              <a href="">Правила покупок с cashback</a>
+              <a href="">Rules for purchases with cashback</a>
             </li>
             <li>
-              <a href="">Возврат / Обмен</a>
+              <a href="">Return / Exchange</a>
             </li>
             <li>
-              <a href="">Правила пользования купонами</a>
+              <a href="">Rules for using coupons</a>
             </li>
           </ul>
         </div>

@@ -92,21 +92,15 @@ nav {
   overflow: hidden;
 }
 
-.category {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  padding: 10px;
-  font-size: 13px;
-}
 .searchInp {
   display: flex;
   align-items: center;
 }
 .searchInp input {
-  width: 220px;
+  width: 350px;
   height: 40px;
   border: none;
+  padding: 0px 20px;
 }
 
 .soundSrc {
