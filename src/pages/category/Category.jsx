@@ -11,6 +11,12 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
+
+
+
+
+
+
 function Category() {
   function valuetext(value) {
     return `${value}°C`;
@@ -47,7 +53,7 @@ function Category() {
         <div className="ctgry_main_info">
           <h3>Смартфоны в Ташкенте</h3>
           <div className="ctgry_ordering">
-            <p>
+            <div>
               <span>
                 <TbCoins className="coin" />
                 По цене
@@ -56,8 +62,8 @@ function Category() {
                 <RiBarChartHorizontalLine className="coin" />
                 По популярности
               </span>
-            </p>
-            <p>
+            </div>
+            <div>
               <ToggleButtonGroup
                 className="ToggleButtonGroup"
                 orientation="horizontal"
@@ -72,7 +78,7 @@ function Category() {
                   <CiGrid2H className="coin" />
                 </ToggleButton>
               </ToggleButtonGroup>
-            </p>
+            </div>
           </div>
         </div>
 
@@ -128,6 +134,9 @@ function Category() {
                </li>
                 </ul>
               </div>
+            <button className="apply">
+        
+            </button>
             </div>
           </div>
         </div>

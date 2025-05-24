@@ -41,7 +41,7 @@
   justify-content: space-between;
 }
 
-.ctgry_ordering p {
+.ctgry_ordering div {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -50,7 +50,7 @@
 }
 
 
-.ctgry_ordering p:nth-child(2) .ToggleButtonGroup {
+.ctgry_ordering div:nth-child(2) .ToggleButtonGroup {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -126,4 +126,8 @@
 
 .nalichi p {
   font-size: 13px;
+}
+.apply {
+  background-color: var(--red);
+  border: none;
 }
