@@ -22,21 +22,31 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, data }) {
+function Navbar({
+  setModalCtgry,
+  modalCtgry,
+  categoryInfo,
+  dataLike,
+  getData,
+  data,
+  setSrcData
+}) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
   const [activSound, setActivSound] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(null);
+
+  // console.log(data?.results?.map((item)=>item.name));
+
 
   const langFunk = (lang) => {
-    setLangSound(
-      lang === "uz" ? "uz-UZ" : lang === "ru" ? "ru-RU" : "en-US"
-    );
+    setLangSound(lang === "uz" ? "uz-UZ" : lang === "ru" ? "ru-RU" : "en-US");
   };
 
   const startRecognition = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       setStatus("Brauzer ovozli qidiruvni qo‘llab-quvvatlamaydi.");
       return;
@@ -63,6 +73,17 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
       setStatus("Xatolik: " + event.error);
     };
   };
+  const fiterData = (text) => {
+    const filtered = data?.results?.filter(item =>
+      item.name.toLowerCase().includes(text.toLowerCase())
+    );
+
+    if (filtered.length > 0) {
+      setSrcData(filtered);
+    }
+  }
+  
+
 
   return (
     <nav>
@@ -74,18 +95,31 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
               <FiMapPin />
               <span>Tashkent</span>
             </li>
-            <li><a href="#">Our shop</a></li>
-            <li><a href="#">B2B sales</a></li>
-            <li><a href="#">Installments</a></li>
-            <li><a href="#">Payment</a></li>
-            <li><a href="#">Warranty</a></li>
+            <li>
+              <a href="#">Our shop</a>
+            </li>
+            <li>
+              <a href="#">B2B sales</a>
+            </li>
+            <li>
+              <a href="#">Installments</a>
+            </li>
+            <li>
+              <a href="#">Payment</a>
+            </li>
+            <li>
+              <a href="#">Warranty</a>
+            </li>
           </ul>
           <div className="nav1_contact">
             <div className="phone">
               <BsTelephone />
               <span>+998 95 123 55 88</span>
             </div>
-            <select onChange={(e) => langFunk(e.target.value)} className="lang-select">
+            <select
+              onChange={(e) => langFunk(e.target.value)}
+              className="lang-select"
+            >
               <option value="ru">Рус</option>
               <option value="uz">O‘zb</option>
               <option value="en">Eng</option>
@@ -104,15 +138,17 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
           </Link>
 
           <div className="NavSearch">
-         
-
             <div className="searchInp">
               <input
                 value={text}
                 onClick={() => navigate("/search")}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => {
+                  setText(e.target.value)
+                  fiterData(e.target.value)
+                }}
                 type="text"
                 placeholder="Телефоны и бытовая техника"
+                
               />
               <div
                 onClick={() => {
@@ -136,7 +172,11 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
               <div className="comparison">
                 <IconButton>
                   <FaBalanceScale />
-                  <CartBadge badgeContent={1} color="primary" overlap="circular" />
+                  <CartBadge
+                    badgeContent={1}
+                    color="primary"
+                    overlap="circular"
+                  />
                 </IconButton>
                 <span>Сравнение</span>
               </div>
@@ -146,7 +186,11 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
               <div className="likeProduct">
                 <IconButton>
                   <FaRegHeart />
-                  <CartBadge badgeContent={dataLike?.count || 0} color="primary" overlap="circular" />
+                  <CartBadge
+                    badgeContent={dataLike?.count || 0}
+                    color="primary"
+                    overlap="circular"
+                  />
                 </IconButton>
                 <span>Избранное</span>
               </div>
@@ -156,7 +200,11 @@ function Navbar({ setModalCtgry, modalCtgry, categoryInfo, dataLike, getData, da
               <div className="cart">
                 <IconButton>
                   <FiShoppingCart />
-                  <CartBadge badgeContent={1} color="primary" overlap="circular" />
+                  <CartBadge
+                    badgeContent={1}
+                    color="primary"
+                    overlap="circular"
+                  />
                 </IconButton>
                 <span>Корзина</span>
               </div>

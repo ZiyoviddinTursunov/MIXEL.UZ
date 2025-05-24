@@ -26,6 +26,7 @@ function App() {
   const [brands, setBrands] = useState();
   const [dataLike, setDataLike] = useState(null);
   const [comparison, setComparison] = useState(null);
+  const [srcData, setSrcData] = useState(null);
 
   const getData = () => {
     const myHeaders = new Headers();
@@ -110,6 +111,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar
+        setSrcData={setSrcData}
           getData={getData}
           data={data}
           setModalCtgry={setModalCtgry}
@@ -144,7 +146,7 @@ function App() {
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/search" element={<Search data={data} />} />
+          <Route path="/search" element={<Search data={data}  srcData={srcData}/>} />
           <Route path="/product/:id" element={<Oneproduct />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
