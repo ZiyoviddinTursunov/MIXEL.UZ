@@ -63,7 +63,7 @@ function Navbar({
       const resultText = event.results[0][0].transcript;
       setText(resultText);
       setStatus("Tugatildi.");
-
+      fiterData(resultText)
       setTimeout(() => {
         setActivSound(false);
       }, 5000);
@@ -72,6 +72,7 @@ function Navbar({
     recognition.onerror = (event) => {
       setStatus("Xatolik: " + event.error);
     };
+
   };
   const fiterData = (text) => {
     const filtered = data?.results?.filter(item =>
