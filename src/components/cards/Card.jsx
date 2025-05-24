@@ -8,6 +8,7 @@ import { getToken } from "../../pages/service/token";
 
 function Card({ item, getData, likedData,setCardModal }) {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+console.log(item);
 
   const liked = (id) => {
     const myHeaders = new Headers();
@@ -44,6 +45,29 @@ function Card({ item, getData, likedData,setCardModal }) {
       })
       .catch((err) => console.error(err));
   };
+
+  const comparisonAdd=(id)=>{
+    const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
+const raw = JSON.stringify({
+  "product": id
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://abzzvx.pythonanywhere.com/versus-items/add/", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  }
+
 
   return (
     <Link to={`/product/${item?.id}`} className="card-link">
@@ -92,6 +116,15 @@ function Card({ item, getData, likedData,setCardModal }) {
           <span className="borderLeft">|</span>
           <button onClick={(e) => e.stopPropagation()}>
             <Checkbox
+                onChange={(e) => {
+                  e.stopPropagation();
+                  if (e.target.checked) {
+                    comparisonAdd(item?.id);
+                  } else {
+                   
+                  }
+                }}
+                checked={item?.versus}
               {...label}
               icon={<FaBalanceScale />}
               checkedIcon={<FaBalanceScale color="var(--red)" />}
