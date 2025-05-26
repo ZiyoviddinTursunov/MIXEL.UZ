@@ -3,7 +3,7 @@ import "./Oneproduct.css";
 import { LuChevronRight } from "react-icons/lu";
 import { TfiInfoAlt } from "react-icons/tfi";
 import { FaCartShopping } from "react-icons/fa6";
-import { FaBalanceScale, FaHeart } from "react-icons/fa";
+import { FaBalanceScale, FaHeart, FaMinus, FaPlus } from "react-icons/fa";
 import { MdRestartAlt } from "react-icons/md";
 import { baseURL } from "../../config";
 import { getToken } from "../service/token";
@@ -14,6 +14,7 @@ function Oneproduct() {
   const [oneProduct, setOneProduct] = useState(null);
   const [mainimage, setMainImage] = useState(null);
   const navigate = useNavigate();
+  const [amount, setAmount] = useState(1);
 
   const getProduct = () => {
     const myHeaders = new Headers();
@@ -33,26 +34,6 @@ function Oneproduct() {
       })
       .catch((error) => console.error(error));
   };
-
-  // const addLike = () => {
-  //   const myHeaders = new Headers();
-  //   {
-  //     getToken
-  //       ? myHeaders.append("Authorization", `Bearer ${getToken}`)
-  //       : navigate("login");
-  //   }
-
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     redirect: "follow",
-  //   };
-
-  //   fetch("https://abzzvx.pythonanywhere.com/liked-items/add/", requestOptions)
-  //     .then((response) => response.text())
-  //     .then((result) => console.log(result))
-  //     .catch((error) => console.error(error));
-  // };
 
   useEffect(() => {
     getProduct();
@@ -95,6 +76,27 @@ function Oneproduct() {
 
           <div className="product_main_info">
             <h1>{oneProduct?.name}</h1>
+
+            <div className="oneProduct_counter">
+              <span
+                onClick={() => {
+                  amount == 1 ? setAmount(1) : setAmount(amount - 1);
+                }}
+                className="cart_click"
+              >
+                <FaMinus />
+              </span>
+              <span>{amount}</span>
+              <span
+                onClick={() => {
+                  setAmount(amount + 1);
+                }}
+                className="cart_click"
+              >
+                <FaPlus />
+              </span>
+            </div>
+
             <div className="product_btns">
               <h3>
                 {oneProduct?.price}

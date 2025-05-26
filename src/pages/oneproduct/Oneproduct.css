@@ -113,3 +113,19 @@
   color: rgba(47, 128, 237, 1);
   font-size: 13px;
 }
+.oneProduct_counter {
+  margin-bottom: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid rgba(237, 55, 41, 1);
+  border-radius: 5px;
+  width: 130px;
+}
+.cart_click {
+  cursor: pointer;
+}
+.cart_click:hover {
+  color: rgba(237, 55, 41, 1);
+}
