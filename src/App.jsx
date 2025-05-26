@@ -37,7 +37,10 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/products/?page_size=100", requestOptions)
+    fetch(
+      "https://abzzvx.pythonanywhere.com/products/?page_size=100",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => setData(result))
       .catch((error) => console.error(error));
@@ -99,6 +102,7 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+
   useEffect(() => {
     getData();
     getCategory();
@@ -111,7 +115,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar
-        setSrcData={setSrcData}
+          setSrcData={setSrcData}
           getData={getData}
           data={data}
           setModalCtgry={setModalCtgry}
@@ -119,7 +123,7 @@ function App() {
           categoryInfo={categoryInfo}
           dataLike={dataLike}
         />
-      {cardModal && <CartModal setCardModal={setCardModal} />}
+        {cardModal && <CartModal setCardModal={setCardModal} />}
         {modalCtgry && <Modalctgry />}
         <ToastContainer autoClose={1000} />
         <Routes>
@@ -127,7 +131,7 @@ function App() {
             path="/"
             element={
               <Home
-              setCardModal={setCardModal}
+                setCardModal={setCardModal}
                 likedData={likedData}
                 getData={getData}
                 categoryInfo={categoryInfo}
@@ -136,17 +140,28 @@ function App() {
               />
             }
           />
-          <Route path="/comparison" element={<Comparison comparison={comparison} />} />
+          <Route
+            path="/comparison"
+            element={<Comparison comparison={comparison} />}
+          />
           <Route
             path="/wishlist"
             element={
-              <Liked dataLike={dataLike} likedData={likedData} getData={getData} setCardModal={setCardModal}/>
+              <Liked
+                dataLike={dataLike}
+                likedData={likedData}
+                getData={getData}
+                setCardModal={setCardModal}
+              />
             }
           />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/search" element={<Search data={data}  srcData={srcData}/>} />
+          <Route
+            path="/search"
+            element={<Search data={data} srcData={srcData} />}
+          />
           <Route path="/product/:id" element={<Oneproduct />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>

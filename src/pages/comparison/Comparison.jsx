@@ -13,6 +13,10 @@ import { FaCartShopping } from "react-icons/fa6";
 import Card from "../../components/cards/Card";
 
 function Comparison({ comparison }) {
+
+
+
+  
   const PinkSwitch = styled(Switch)(({ theme }) => ({
     "& .MuiSwitch-switchBase.Mui-checked": {
       color: pink[600],

@@ -54,7 +54,7 @@ function Navbar({
 
     const recognition = new SpeechRecognition();
     recognition.lang = langSound;
-    recognition.interimResults = false;
+    recognition.interimResults = true;
 
     setStatus("Gapiring...");
     recognition.start();

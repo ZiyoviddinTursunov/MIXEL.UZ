@@ -8,7 +8,6 @@ import { getToken } from "../../pages/service/token";
 
 function Card({ item, getData, likedData,setCardModal }) {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-console.log(item);
 
   const liked = (id) => {
     const myHeaders = new Headers();
