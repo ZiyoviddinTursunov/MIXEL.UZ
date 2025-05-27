@@ -20,7 +20,7 @@ import CartModal from "./components/cardModal/CardModal";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
-  const [cardModal, setCardModal] = useState(false);
+  const [cardModal, setCardModal] = useState(null);
   const [data, setData] = useState(null);
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [brands, setBrands] = useState();
@@ -123,7 +123,7 @@ function App() {
           categoryInfo={categoryInfo}
           dataLike={dataLike}
         />
-        {cardModal && <CartModal setCardModal={setCardModal} />}
+        {cardModal && <CartModal data={data} cardModal={cardModal} setCardModal={setCardModal} />}
         {modalCtgry && <Modalctgry />}
         <ToastContainer autoClose={1000} />
         <Routes>

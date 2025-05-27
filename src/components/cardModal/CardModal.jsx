@@ -8,13 +8,18 @@ import InfoIcon from "@mui/icons-material/Info";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 
-function CartModal({setCardModal }) {
+function CartModal({setCardModal,data,cardModal }) {
   const [count, setCount] = useState(1);
   const [activeColorIndex, setActiveColorIndex] = useState(null);
   const [activeSizeIndex, setActiveSizeIndex] = useState(null);
+  const [mainimage, setMainImage] = useState(null);
 
   const colors = ["#000", "#f00", "#0f0"];
   const sizes = ["L", "X", "XL"];
+
+const [modalData,setModalData]=useState(data?.results?.filter((item)=>item?.id==cardModal))
+
+console.log(modalData[0]);
 
   return (
     <>
@@ -38,19 +43,24 @@ function CartModal({setCardModal }) {
 
           <div className="cartModal_imgs">
             <div className="cardModal_img01">
-              <img src="/public/imgs/892 1.png" alt="" />
-              <img src="/public/imgs/892 1.png" alt="" />
-              <img src="/public/imgs/892 1.png" alt="" />
-              <img src="/public/imgs/892 1.png" alt="" />
+        
+            {modalData[0]?.images.map((item, index) => (
+              <img
+                key={index}
+                onClick={() => setMainImage(item?.image)}
+                src={item?.image}
+                alt=""
+              />
+            ))}
             </div>
             <div className="modal_Imgs">
-              <img src="/public/imgs/892 1.png" alt="" />
+            <img className="main_image" src={mainimage ?mainimage :modalData[0]?.images[0].image } alt="" />
             </div>
           </div>
 
           <div className="cartModal_text">
             <h1>
-              Smartfon Xiaomi Redmi 14C, 8+256GB, 5160 mA/h batareya, tez zaryadlash 18W, kamera 50MP AI
+            {modalData[0]?.name}
             </h1>
 
             <h3>Colors</h3>
