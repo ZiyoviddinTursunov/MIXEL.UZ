@@ -42,17 +42,17 @@ const [modalData,setModalData]=useState(data?.results?.filter((item)=>item?.id==
           </IconButton>
 
           <div className="cartModal_imgs">
-            <div className="cardModal_img01">
-        
-            {modalData[0]?.images.map((item, index) => (
-              <img
-                key={index}
-                onClick={() => setMainImage(item?.image)}
-                src={item?.image}
-                alt=""
-              />
-            ))}
-            </div>
+          <div className="cardModal_img01">
+  {modalData[0]?.images.slice(0, 4).map((item, index) => (
+    <img
+      key={index}
+      onClick={() => setMainImage(item?.image)}
+      src={item?.image}
+      alt=""
+    />
+  ))}
+</div>
+
             <div className="modal_Imgs">
             <img className="main_image" src={mainimage ?mainimage :modalData[0]?.images[0].image } alt="" />
             </div>
