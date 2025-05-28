@@ -37,7 +37,8 @@ function Navbar({
   const [activSound, setActivSound] = useState(false);
   const navigate = useNavigate(null);
 
-  // console.log(data?.results?.map((item)=>item.name));
+
+
 
 
   const langFunk = (lang) => {
@@ -235,8 +236,8 @@ function Navbar({
           <ul className="categoryMenuLink">
             {data
               ? categoryInfo?.results?.map((item, index) => (
-                  <li key={index} onClick={() => navigate("/category")}>
-                    <a href="#">{item.name}</a>
+                  <li key={index}>
+                    <Link to={`/category/${item.id}`} >{item.name}</Link>
                   </li>
                 ))
               : [...Array(5)].map((_, i) => (

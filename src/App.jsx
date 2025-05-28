@@ -102,7 +102,6 @@ function App() {
       .catch((error) => console.error(error));
   };
 
-
   useEffect(() => {
     getData();
     getCategory();
@@ -123,8 +122,14 @@ function App() {
           categoryInfo={categoryInfo}
           dataLike={dataLike}
         />
-        {cardModal && <CartModal data={data} cardModal={cardModal} setCardModal={setCardModal} />}
-        {modalCtgry && <Modalctgry />}
+        {cardModal && (
+          <CartModal
+            data={data}
+            cardModal={cardModal}
+            setCardModal={setCardModal}
+          />
+        )}
+        {modalCtgry && <Modalctgry   data={data} categoryInfo={categoryInfo}/>}
         <ToastContainer autoClose={1000} />
         <Routes>
           <Route
@@ -157,7 +162,7 @@ function App() {
           />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/category" element={<Category />} />
+          <Route path="/category/:id" element={<Category data={data} />} />
           <Route
             path="/search"
             element={<Search data={data} srcData={srcData} />}

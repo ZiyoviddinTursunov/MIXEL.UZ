@@ -27,12 +27,19 @@
 .ctgry_name {
   width: 25%;
 }
+.icon-name{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
 
 .ctgry_name li,
 .ctgry_items li {
   color: black;
   display: flex;
-  gap: 10px;
+ justify-content: space-between;
+
   align-items: center;
   padding: 12px 5px;
   font-size: 14px;
@@ -47,6 +54,12 @@
 .ctgry_items {
   width: 30%;
 }
+.categoryBoxs{
+  display: flex;
+  flex-direction: column;
+height: 300px;
+overflow: auto;
+}
 
 .ctgry_items h1 {
   color: rgba(32, 32, 32, 1);
@@ -57,3 +70,5 @@
   width: 40%;
   object-fit: contain;
 }
+
+

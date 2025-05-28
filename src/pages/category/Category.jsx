@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Category.css";
 import { LuChevronRight } from "react-icons/lu";
 import { TbCoins } from "react-icons/tb";
@@ -14,12 +14,22 @@ import Checkbox from "@mui/material/Checkbox";
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useParams } from "react-router-dom";
+import Card from "../../components/cards/Card";
 
 
 
 
 
-function Category() {
+function Category({data}) {
+
+console.log(data);
+
+const {id} =useParams()
+  const [categoryData,setCategoryData]=useState(data?.results?.filter((item)=>item?.category==id))  
+
+  console.log(categoryData);
+  
   function valuetext(value) {
     return `${value}°C`;
   }
@@ -37,7 +47,7 @@ function Category() {
   return (
     <div className="categories">
       <div className="container">
-        <div className="extra_info">
+     <div className="extra_info">
           <p>
             <span>
               Главная <LuChevronRight />
@@ -84,7 +94,12 @@ function Category() {
           </div>
         </div>
 
-        <div>
+
+
+
+
+
+        <div className="categoryMenu">
           <div className="features">
             <div className="features_info">
               <div>
@@ -145,7 +160,15 @@ function Category() {
 
             </div>
           </div>
+          <div className="categoryCard">
+          {
+            categoryData?.map((item)=>{
+              return <Card item={item}/>
+            })
+          }
         </div>
+        </div>
+  
       </div>
     </div>
   );

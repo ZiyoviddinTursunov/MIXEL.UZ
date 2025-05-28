@@ -2,6 +2,18 @@
   padding: 20px 0px;
 }
 
+.categoryMenu{
+  display: flex;
+  gap: 20px;
+ }
+
+
+.categoryCard{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
 
 .ctgry_main_info {
   display: flex;

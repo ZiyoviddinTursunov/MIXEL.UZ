@@ -1,65 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Modalctgry.css";
 import { FaAngleRight } from "react-icons/fa";
 
-function Modalctgry() {
+function Modalctgry({categoryInfo, data}) {
+  // console.log(categoryInfo);
+  // console.log(data);
+  const [dataCategory,setDataCategory]=useState(null)
+  const dataCategoryFunk=(id)=>{
+setDataCategory(data?.results?.filter((item)=>item?.category==id))
+  }
+
+
+
+
   return (
     <div className="modal_ctgry">
       <div className="modal_ctgry_info">
         <div className="container">
           <ul className="ctgry_name">
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны, планшеты
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Периферийные устройства
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны, планшеты
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны, планшеты
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны, планшеты
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны, планшеты
-              <FaAngleRight />
-            </li>
-            <li>
-              <img src="/public/imgs/ctgry1.svg" alt="" />
-              Телефоны, планшеты
-              <FaAngleRight />
-            </li>
+            {
+              categoryInfo?.results?.map((item,index)=>{
+                return    <li key={index} onClick={()=>{
+                  dataCategoryFunk(item?.id);
+                  
+                }}>
+               <div className="icon-name">
+               <img src={item?.icon} alt="" />
+               {item?.name}
+               </div>
+               
+                <FaAngleRight className="FaAngleRight"/>
+              </li>
+              })
+            }
+         
+        
           </ul>
 
           <ul className="ctgry_items">
-            <h1>Сетевое оборудование</h1>
-            <li>Коммутаторы</li>
-            <li>Точки доступа Wi-Fi</li>
-            <li>Медиаконверторы</li>
-            <li>Сетевые адаптеры</li>
-            <li>Сетевые адаптеры</li>
-            <li>Сетевые адаптеры</li>
-            <li>Сетевые адаптеры</li>
-            <li>Сетевые адаптеры</li>
+            <h1>{dataCategory !=null ?  dataCategory[0]?.category_name:""}</h1>
+     <div className="categoryBoxs">
+     {
+              dataCategory?.map((item,index)=>{
+                return <li key={index}>{item?.name}</li>
+              })
+            }
+     </div>
+  
+
           </ul>
 
           <img className="ctgry_img" src="/public/imgs/modalctgry.png" alt="" />
