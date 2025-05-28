@@ -19,7 +19,7 @@ function CartModal({setCardModal,data,cardModal }) {
 
 const [modalData,setModalData]=useState(data?.results?.filter((item)=>item?.id==cardModal))
 
-console.log(modalData[0]);
+
 
   return (
     <>
