@@ -9,7 +9,7 @@ function Modalctgry({categoryInfo, data}) {
   const dataCategoryFunk=(id)=>{
 setDataCategory(data?.results?.filter((item)=>item?.category==id))
   }
-
+const [mainImg,setMainImg]=useState("/public/imgs/modalctgry.png")
 
 
 
@@ -50,7 +50,7 @@ setDataCategory(data?.results?.filter((item)=>item?.category==id))
 
           </ul>
 
-          <img className="ctgry_img" src="/public/imgs/modalctgry.png" alt="" />
+          <img className="ctgry_img" src={mainImg} alt="" />
         </div>
       </div>
     </div>

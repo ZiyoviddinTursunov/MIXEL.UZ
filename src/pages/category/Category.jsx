@@ -12,24 +12,20 @@ import Slider from "@mui/material/Slider";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
 
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import Card from "../../components/cards/Card";
+import CategoryCards from "../../components/categoryCards/CategoryCards";
 
+function Category({ data, likedData, getData }) {
+  const { id } = useParams();
+  const [categoryData, setCategoryData] = useState(
+    data?.results?.filter((item) => item?.category == id)
+  );
 
+  const [verticalCard,setVerticalCard]=useState(true)
 
-
-
-function Category({data}) {
-
-console.log(data);
-
-const {id} =useParams()
-  const [categoryData,setCategoryData]=useState(data?.results?.filter((item)=>item?.category==id))  
-
-  console.log(categoryData);
-  
   function valuetext(value) {
     return `${value}°C`;
   }
@@ -47,7 +43,7 @@ const {id} =useParams()
   return (
     <div className="categories">
       <div className="container">
-     <div className="extra_info">
+        <div className="extra_info">
           <p>
             <span>
               Главная <LuChevronRight />
@@ -83,21 +79,22 @@ const {id} =useParams()
                 exclusive
                 onChange={handleViewChange}
               >
-                <ToggleButton value="list" aria-label="list">
+                <ToggleButton onClick={()=>{
+                      setVerticalCard(true)
+                  
+                }} value="list" aria-label="list">
                   <CiGrid41 className="coin" />
                 </ToggleButton>
-                <ToggleButton value="module" aria-label="module">
+                <ToggleButton onClick={()=>{
+                 setVerticalCard(false)
+                  
+                }} value="module" aria-label="module">
                   <CiGrid2H className="coin" />
                 </ToggleButton>
               </ToggleButtonGroup>
             </div>
           </div>
         </div>
-
-
-
-
-
 
         <div className="categoryMenu">
           <div className="features">
@@ -126,49 +123,59 @@ const {id} =useParams()
                 <ul>
                   <li>
                     <Checkbox
-                        {...label}
-                        defaultChecked
-                        sx={{
-                          color: pink[800],
-                          "&.Mui-checked": {
-                            color: pink[600],
-                          },
-                        }}
-                      /><label htmlFor="">LG (30)</label>
+                      {...label}
+                      defaultChecked
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
+                    <label htmlFor="">LG (30)</label>
                   </li>
                   <li>
-                 
-                 <Checkbox
-                     {...label}
-                     defaultChecked
-                     sx={{
-                       color: pink[800],
-                       "&.Mui-checked": {
-                         color: pink[600],
-                       },
-                     }}
-                   /><label htmlFor="">LG (30)</label>
-               </li>
+                    <Checkbox
+                      {...label}
+                      defaultChecked
+                      sx={{
+                        color: pink[800],
+                        "&.Mui-checked": {
+                          color: pink[600],
+                        },
+                      }}
+                    />
+                    <label htmlFor="">LG (30)</label>
+                  </li>
                 </ul>
               </div>
 
-            <Stack spacing={2} direction="row">
-
-      <Button variant="contained">Apply</Button>
-
-    </Stack>
-
+              <Stack spacing={2} direction="row">
+                <Button variant="contained">Apply</Button>
+              </Stack>
             </div>
           </div>
           <div className="categoryCard">
+           
           {
-            categoryData?.map((item)=>{
-              return <Card item={item}/>
-            })
+verticalCard ?   categoryData?.map((item,i)=>{
+  return <Card key={i} item={item}/>
+}) :categoryData?.map((item,i) => {
+  return (
+    <CategoryCards key={i}
+      likedData={likedData}
+      getData={getData}
+      item={item}
+    />
+  );
+})
+
+
           }
+
+       
+          </div>
         </div>
-        </div>
-  
       </div>
     </div>
   );

@@ -162,7 +162,10 @@ function App() {
           />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/category/:id" element={<Category data={data} />} />
+          <Route path="/category/:id" element={<Category data={data}   likedData={likedData}
+                getData={getData}
+          
+                />} />
           <Route
             path="/search"
             element={<Search data={data} srcData={srcData} />}
