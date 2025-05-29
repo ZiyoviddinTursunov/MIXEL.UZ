@@ -35,13 +35,14 @@ function Navbar({
 }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
-  const [langSound, setLangSound] = useState("ru-RU");
+  const [langSound, setLangSound] = useState("uz-UZ");
   const [activSound, setActivSound] = useState(false);
   const navigate = useNavigate(null);
 
   const langFunk = (lang) => {
     setLangSound(lang === "uz" ? "uz-UZ" : lang === "ru" ? "ru-RU" : "en-US");
   };
+  
 
   const startRecognition = () => {
     const SpeechRecognition =
@@ -85,7 +86,7 @@ function Navbar({
   return (
     <nav>
       {/* --- Top bar --- */}
-      <div className="nav1">
+      {/* <div className="nav1">
         <div className="container">
           <ul className="nav1_link">
             <li className="location">
@@ -123,7 +124,7 @@ function Navbar({
             </select>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* --- Middle nav with logo and search --- */}
       <div className="nav2">

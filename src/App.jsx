@@ -136,7 +136,7 @@ function App() {
     getBrands();
     likedData();
     comparisonData();
-    addCart();
+
   }, []);
 
   return (
@@ -172,7 +172,6 @@ function App() {
                 categoryInfo={categoryInfo}
                 brands={brands}
                 data={data}
-                
               />
             }
           />
@@ -203,7 +202,10 @@ function App() {
             path="/search"
             element={<Search data={data} srcData={srcData} />}
           />
-          <Route path="/product/:id" element={<Oneproduct   addCart={addCart} />} />
+          <Route
+            path="/product/:id"
+            element={<Oneproduct addCart={addCart} />}
+          />
 
           <Route path="/user" element={<User />} />
           <Route path="/cart" element={<Cart />} />

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { getToken } from "../../pages/service/token";
 
 function Card({ item, getData, likedData, setCardModal }) {
+
+  
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const liked = (id) => {
@@ -23,8 +25,9 @@ function Card({ item, getData, likedData, setCardModal }) {
     })
       .then((res) => res.text())
       .then(() => {
-        getData?.();
-        likedData?.();
+        getData();
+        likedData();
+        
       })
       .catch((err) => console.error(err));
   };
@@ -39,8 +42,8 @@ function Card({ item, getData, likedData, setCardModal }) {
     })
       .then((res) => res.text())
       .then(() => {
-        getData?.();
-        likedData?.();
+        getData();
+        likedData();
       })
       .catch((err) => console.error(err));
   };
@@ -63,7 +66,9 @@ function Card({ item, getData, likedData, setCardModal }) {
 
     fetch("https://abzzvx.pythonanywhere.com/versus-items/add/", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        
+      })
       .catch((error) => console.error(error));
   };
 
@@ -74,7 +79,7 @@ function Card({ item, getData, likedData, setCardModal }) {
           <img src={item?.main_image} alt={item?.name} />
         </div>
         <div className="product-price">
-          <span>{item?.monthly_price} сум/мес</span>
+          <span>{item?.monthly_price} uzs/month</span>
           <h5>{item?.price} сум</h5>
         </div>
         <div className="product-title">

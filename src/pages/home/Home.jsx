@@ -10,6 +10,7 @@ import { GoArrowRight } from "react-icons/go";
 import { baseURL } from "../../config";
 
 function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
+
   const [galery, setGalery] = useState(null);
 
   const getGalery = () => {
@@ -25,6 +26,7 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
     getGalery();
   }, []);
 
+
   return (
     <>
       <div className="hero">
@@ -33,7 +35,7 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
             {data ? (
               <Swiper
                 spaceBetween={30}
-                centeredSlides={true}
+                centeredSlides={false}
                 autoplay={{
                   delay: 2500,
                   disableOnInteraction: false,
@@ -97,7 +99,7 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
               <Swiper
                 slidesPerView={4}
                 spaceBetween={30}
-                centeredSlides={true}
+                centeredSlides={false}
                 autoplay={{
                   delay: 2500,
                   disableOnInteraction: false,
@@ -200,7 +202,7 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
             <Swiper
               slidesPerView={5}
               spaceBetween={30}
-              centeredSlides={true}
+              centeredSlides={false}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,

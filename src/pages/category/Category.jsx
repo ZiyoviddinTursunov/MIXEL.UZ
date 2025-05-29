@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Category.css";
 import { LuChevronRight } from "react-icons/lu";
 import { TbCoins } from "react-icons/tb";
@@ -17,12 +17,36 @@ import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import Card from "../../components/cards/Card";
 import CategoryCards from "../../components/categoryCards/CategoryCards";
+import { getToken } from "../service/token";
 
 function Category({ data, likedData, getData }) {
   const { id } = useParams();
-  const [categoryData, setCategoryData] = useState(
-    data?.results?.filter((item) => item?.category == id)
-  );
+  const [categoryData, setCategoryData] = useState(null);
+
+
+const categoryFilter=()=>{
+  const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch(`https://abzzvx.pythonanywhere.com/products/?category=${id}\n`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {
+
+    setCategoryData(result?.results)
+
+  })
+  .catch((error) => console.error(error));
+}
+
+useEffect(()=>{
+  categoryFilter()
+},[id])
 
   const [verticalCard,setVerticalCard]=useState(true)
 
@@ -59,7 +83,7 @@ function Category({ data, likedData, getData }) {
         </div>
 
         <div className="ctgry_main_info">
-          <h3>Смартфоны в Ташкенте</h3>
+          <h3>{categoryData[0]?.category_name}</h3>
           <div className="ctgry_ordering">
             <div>
               <span>
@@ -159,7 +183,8 @@ function Category({ data, likedData, getData }) {
            
           {
 verticalCard ?   categoryData?.map((item,i)=>{
-  return <Card key={i} item={item}/>
+  return <Card key={i} item={item} likedData={likedData}
+  getData={getData}/>
 }) :categoryData?.map((item,i) => {
   return (
     <CategoryCards key={i}
