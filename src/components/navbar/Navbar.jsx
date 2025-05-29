@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
 import { Link, useNavigate } from "react-router-dom";
 import { getToken } from "../../pages/service/token";
+import { CgLogIn } from "react-icons/cg";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -224,6 +225,8 @@ function Navbar({
                 </div>
               </Link>
             )}
+
+           
           </div>
         </div>
       </div>

@@ -79,6 +79,7 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
                       getData={getData}
                       key={index}
                       item={item}
+                      
                     />
                   ))
                 : [...Array(10)].map((_, i) => (

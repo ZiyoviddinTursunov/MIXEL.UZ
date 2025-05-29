@@ -9,12 +9,12 @@ import { baseURL } from "../../config";
 import { getToken } from "../service/token";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Oneproduct() {
+function Oneproduct({ addCart }) {
   const { id } = useParams();
   const [oneProduct, setOneProduct] = useState(null);
   const [mainimage, setMainImage] = useState(null);
   const navigate = useNavigate();
-  const [amount, setAmount] = useState(1);
+  const [count, setcount] = useState(1);
 
   const getProduct = () => {
     const myHeaders = new Headers();
@@ -80,16 +80,16 @@ function Oneproduct() {
             <div className="oneProduct_counter">
               <span
                 onClick={() => {
-                  amount == 1 ? setAmount(1) : setAmount(amount - 1);
+                  count == 1 ? setcount(1) : setcount(count - 1);
                 }}
                 className="cart_click"
               >
                 <FaMinus />
               </span>
-              <span>{amount}</span>
+              <span>{count}</span>
               <span
                 onClick={() => {
-                  setAmount(amount + 1);
+                  setcount(count + 1);
                 }}
                 className="cart_click"
               >
@@ -106,7 +106,9 @@ function Oneproduct() {
               </h3>
 
               <div>
-                <span>
+                <span onClick={()=>{
+                  addCart(id, count)
+                }}>
                   <FaCartShopping />
                 </span>
 

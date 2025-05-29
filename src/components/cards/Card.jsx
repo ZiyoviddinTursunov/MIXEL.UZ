@@ -85,7 +85,7 @@ function Card({ item, getData, likedData, setCardModal }) {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            setCardModal(item?.id);
+          
           }}
         >
           <Checkbox

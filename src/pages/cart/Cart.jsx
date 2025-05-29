@@ -2,8 +2,28 @@ import React from "react";
 import "./Cart.css";
 import { LuChevronRight } from "react-icons/lu";
 import { MdDelete } from "react-icons/md";
+import { getToken } from "../service/token";
 
 function Cart() {
+  const getCartData = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+    `Bearer ${getToken()}`
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("https://abzzvx.pythonanywhere.com/cart-items/", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="item_carts">
       <div className="container">

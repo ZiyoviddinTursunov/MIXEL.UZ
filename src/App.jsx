@@ -8,7 +8,7 @@ import Login from "./pages/login/Login";
 import { useEffect, useState } from "react";
 import Modalctgry from "./components/modalctgry/Modalctgry";
 import Category from "./pages/category/Category";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { baseURL } from "./config";
 import Comparison from "./pages/comparison/Comparison";
 import { getToken } from "./pages/service/token";
@@ -18,6 +18,7 @@ import Oneproduct from "./pages/oneproduct/Oneproduct";
 import Cart from "./pages/cart/Cart";
 import CartModal from "./components/cardModal/CardModal";
 import Profile from "./pages/profile/Profile";
+import User from "./pages/user/User";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
@@ -103,12 +104,39 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+  const addCart = (id, count) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
+    const raw = JSON.stringify({
+      product: id,
+      amount: count,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${baseURL}/cart-items/create`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        toast.success("Product added to cart succesfully");
+      })
+      .catch((error) => console.error(error));
+  };
+
   useEffect(() => {
     getData();
     getCategory();
     getBrands();
     likedData();
     comparisonData();
+    addCart();
   }, []);
 
   return (
@@ -128,9 +156,10 @@ function App() {
             data={data}
             cardModal={cardModal}
             setCardModal={setCardModal}
+            addCart={addCart}
           />
         )}
-        {modalCtgry && <Modalctgry   data={data} categoryInfo={categoryInfo}/>}
+        {modalCtgry && <Modalctgry data={data} categoryInfo={categoryInfo} />}
         <ToastContainer autoClose={1000} />
         <Routes>
           <Route
@@ -143,6 +172,7 @@ function App() {
                 categoryInfo={categoryInfo}
                 brands={brands}
                 data={data}
+                
               />
             }
           />
@@ -163,18 +193,21 @@ function App() {
           />
           <Route path="/singup" element={<SingPu />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/category/:id" element={<Category data={data}   likedData={likedData}
-                getData={getData}
-          
-                />} />
+          <Route
+            path="/category/:id"
+            element={
+              <Category data={data} likedData={likedData} getData={getData} />
+            }
+          />
           <Route
             path="/search"
             element={<Search data={data} srcData={srcData} />}
           />
-          <Route path="/product/:id" element={<Oneproduct />} />
+          <Route path="/product/:id" element={<Oneproduct   addCart={addCart} />} />
+
+          <Route path="/user" element={<User />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
-
         </Routes>
         <Footer />
       </BrowserRouter>
