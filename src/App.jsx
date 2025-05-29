@@ -17,7 +17,6 @@ import Search from "./pages/search/Search";
 import Oneproduct from "./pages/oneproduct/Oneproduct";
 import Cart from "./pages/cart/Cart";
 import CartModal from "./components/cardModal/CardModal";
-import Profile from "./pages/profile/Profile";
 import User from "./pages/user/User";
 
 function App() {
@@ -29,10 +28,15 @@ function App() {
   const [dataLike, setDataLike] = useState(null);
   const [comparison, setComparison] = useState(null);
   const [srcData, setSrcData] = useState(null);
+  const [cartData, setCartData] = useState(null);
 
   const getData = () => {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${getToken()}`);
+    {
+      if (getToken()) {
+        myHeaders.append("Authorization", `Bearer ${getToken()}`);
+      }
+    }
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
@@ -104,6 +108,24 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+  const getCartData = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${baseURL}/cart-items/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setCartData(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
   const addCart = (id, count) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -124,7 +146,7 @@ function App() {
     fetch(`${baseURL}/cart-items/create`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        getCartData();
         toast.success("Product added to cart succesfully");
       })
       .catch((error) => console.error(error));
@@ -136,7 +158,7 @@ function App() {
     getBrands();
     likedData();
     comparisonData();
-
+    getCartData();
   }, []);
 
   return (
@@ -150,6 +172,7 @@ function App() {
           modalCtgry={modalCtgry}
           categoryInfo={categoryInfo}
           dataLike={dataLike}
+          cartData={cartData}
         />
         {cardModal && (
           <CartModal
@@ -191,7 +214,7 @@ function App() {
             }
           />
           <Route path="/singup" element={<SingPu />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login    getData={getData} />} />
           <Route
             path="/category/:id"
             element={
@@ -207,9 +230,11 @@ function App() {
             element={<Oneproduct addCart={addCart} />}
           />
 
-          <Route path="/user" element={<User />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/user" element={<User getData={getData} />} />
+          <Route
+            path="/cart"
+            element={<Cart cartData={cartData} getCartData={getCartData} />}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

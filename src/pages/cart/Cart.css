@@ -15,6 +15,7 @@
   box-shadow: 0px 0px 5px rgba(242, 242, 242, 1);
   margin-bottom: 15px;
 }
+
 .cart_title h3,
 .cart_product h3 {
   font-size: 16px;
@@ -33,9 +34,23 @@
   width: 40% !important;
   display: flex;
   justify-content: start !important;
-  gap: 50px;
+  gap: 30px;
   align-items: center;
+}
+.cart_image img {
+  width: 50px;
 }
 .cart_image input {
   width: 10px;
+}
+.cart_image label {
+  cursor: pointer;
+}
+.deleteCart {
+  cursor: pointer;
+  color: rgba(237, 55, 41, 1) !important;
+  transition: all 0.3s ease;
+}
+.deleteCart:hover {
+  transform: scale(1.1);
 }

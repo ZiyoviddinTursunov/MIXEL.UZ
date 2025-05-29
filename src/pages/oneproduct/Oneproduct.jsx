@@ -60,9 +60,10 @@ function Oneproduct({ addCart }) {
           <div className="product_image">
             <img className="main_image" src={mainimage} alt="" />
             <div className="all_imgs">
-              {oneProduct?.images?.map((item) => {
+              {oneProduct?.images?.map((item, index) => {
                 return (
                   <img
+                    key={index}
                     onClick={() => {
                       setMainImage(item?.image);
                     }}
@@ -106,9 +107,11 @@ function Oneproduct({ addCart }) {
               </h3>
 
               <div>
-                <span onClick={()=>{
-                  addCart(id, count)
-                }}>
+                <span
+                  onClick={() => {
+                    addCart(id, count);
+                  }}
+                >
                   <FaCartShopping />
                 </span>
 

@@ -19,7 +19,7 @@ function CartModal({ setCardModal, data, cardModal, addCart }) {
   const [modalData, setModalData] = useState(
     data?.results?.filter((item) => item?.id == cardModal)
   );
-  const [id, setId] = useState(modalData[0].id);
+  const [id, setId] = useState(modalData[0]?.id);
 
   return (
     <>

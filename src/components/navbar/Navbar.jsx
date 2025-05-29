@@ -15,7 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
 import { Link, useNavigate } from "react-router-dom";
 import { getToken } from "../../pages/service/token";
-import { CgLogIn } from "react-icons/cg";
+
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -32,6 +32,7 @@ function Navbar({
   getData,
   data,
   setSrcData,
+  cartData
 }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
@@ -42,7 +43,6 @@ function Navbar({
   const langFunk = (lang) => {
     setLangSound(lang === "uz" ? "uz-UZ" : lang === "ru" ? "ru-RU" : "en-US");
   };
-  
 
   const startRecognition = () => {
     const SpeechRecognition =
@@ -160,7 +160,7 @@ function Navbar({
 
             <button className="srcBtn">
               <IoSearch />
-              <span>Поиск</span>
+              <span>Search</span>
             </button>
           </div>
 
@@ -198,7 +198,7 @@ function Navbar({
                 <IconButton>
                   <FiShoppingCart />
                   <CartBadge
-                    badgeContent={1}
+                    badgeContent={cartData?.count || 0}
                     color="primary"
                     overlap="circular"
                   />
@@ -208,7 +208,7 @@ function Navbar({
             </Link>
 
             {getToken() ? (
-              <Link to="/profile">
+              <Link to="/user">
                 <div className="nav-user">
                   <IconButton>
                     <FiUser />
@@ -226,8 +226,6 @@ function Navbar({
                 </div>
               </Link>
             )}
-
-           
           </div>
         </div>
       </div>

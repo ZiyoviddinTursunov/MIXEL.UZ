@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./User.css";
 import { toast } from "react-toastify";
-import { getToken } from "../service/token";
+import { deleteToken, getToken } from "../service/token";
 import { FiFileText, FiUser } from "react-icons/fi";
 import { BsCart2 } from "react-icons/bs";
 import { LuClock4 } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
-function User() {
+import { baseURL } from "../../config";
+import { useNavigate } from "react-router-dom";
+function User({ getData }) {
   const [userName, setUserName] = useState("");
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [phone, setPhone] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const getData = () => {
+  const getUser = () => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${getToken()}`);
 
@@ -24,7 +27,7 @@ function User() {
       redirect: "follow",
     };
 
-    fetch("https://abzzvx.pythonanywhere.com/users/me", requestOptions)
+    fetch(`${baseURL}/users/me`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setFirst_name(result.first_name || "");
@@ -32,7 +35,7 @@ function User() {
         setLast_name(result?.last_name || "");
         setCardNumber(result?.card_number || "");
         setPhone(result?.phone_number || "");
-        console.log(result);    
+        console.log(result);
       })
       .catch((error) => console.error(error));
   };
@@ -46,7 +49,7 @@ function User() {
       username: userName,
       first_name: first_name,
       last_name: last_name,
-      card_number:cardNumber,
+      card_number: cardNumber,
       isadmin: false,
       phone_number: phone,
       password: password,
@@ -63,20 +66,17 @@ function User() {
       .then((response) => response.text())
       .then((result) => {
         console.log(result);
-        
       })
       .catch((error) => console.error(error));
   };
 
   useEffect(() => {
-    getData();
+    getUser();
   }, []);
 
   return (
     <div className="profile">
       <div className="container">
- 
-
         <div className="welcome-text">
           Welcome!{" "}
           <span className="highlight">{first_name + " " + last_name}</span>
@@ -84,40 +84,51 @@ function User() {
 
         <div className="profile-container">
           <div className="sidebar">
-         <div className="user-image">
-<div className="image">
-    <span><FiUser/></span>
-
-</div>
-<div className="user-title">
-    <p>{first_name + " " + last_name}
-   </p>
-    <span> {phone}</span>
-</div>
-         </div>
-<div className="menuProfil">
-<div className="MenuBox">
-<span><BsCart2/></span><p>
-My installments</p>
-</div>
-<div className="MenuBox">
-<span><FiFileText/></span><p>
-
-Payment history</p>
-</div>
-<div className="MenuBox">
-<span><LuClock4/></span><p>
-Online orders</p>
-</div>
-<div className="MenuBox">
-<span><CiLogout/></span><p>
-Logout</p>
-</div>  
-
-</div>
-
-
-
+            <div className="user-image">
+              <div className="image">
+                <span>
+                  <FiUser />
+                </span>
+              </div>
+              <div className="user-title">
+                <p>{first_name + " " + last_name}</p>
+                <span> {phone}</span>
+              </div>
+            </div>
+            <div className="menuProfil">
+              <div className="MenuBox">
+                <span>
+                  <BsCart2 />
+                </span>
+                <p>My installments</p>
+              </div>
+              <div className="MenuBox">
+                <span>
+                  <FiFileText />
+                </span>
+                <p>Payment history</p>
+              </div>
+              <div className="MenuBox">
+                <span>
+                  <LuClock4 />
+                </span>
+                <p>Online orders</p>
+              </div>
+              <div
+                onClick={() => {
+                  deleteToken();
+                  navigate("/");
+                  getData();
+                  toast.info("You have been logged out.")
+                }}
+                className="MenuBox"
+              >
+                <span>
+                  <CiLogout />
+                </span>
+                <p>Logout</p>
+              </div>
+            </div>
           </div>
 
           <div className="profile-form">
@@ -155,7 +166,7 @@ Logout</p>
                 <input
                   onChange={(e) => setCardNumber(e.target.value)}
                   value={cardNumber}
-                  type="text"
+                  type="number"
                   placeholder="0000 0000 0000 0000"
                 />
               </div>
@@ -164,7 +175,7 @@ Logout</p>
                 <input
                   onChange={(e) => setPhone(e.target.value)}
                   value={phone}
-                  type="text"
+                  type="tel"
                   placeholder="+998...."
                 />
               </div>

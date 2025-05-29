@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { setToken } from "../service/token";
 import { baseURL } from "../../config";
 
-function Login() {
+function Login({ getData }) {
   const [eye, setEye] = useState(true);
   const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
@@ -54,6 +54,9 @@ function Login() {
         }
         {
           result.access && navigate("/");
+        }
+        {
+          result.access && getData();
         }
       })
       .catch((error) => console.error(error));
