@@ -14,6 +14,8 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
 import { Link, useNavigate } from "react-router-dom";
+import { getToken } from "../../pages/service/token";
+import { CgLogIn } from "react-icons/cg";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -212,14 +214,24 @@ function Navbar({
               </div>
             </Link>
 
-            <Link to="/login">
+
+            {
+              getToken() ?    <Link to="/user">
               <div className="nav-user">
                 <IconButton>
                   <FiUser />
                 </IconButton>
-                <span>Войти</span>
+                <span>User</span>
+              </div>
+            </Link> :   <Link to="/login">
+              <div className="nav-user">
+                <IconButton>
+                <CgLogIn/>
+                </IconButton>
+                <span>Login</span>
               </div>
             </Link>
+            }
           </div>
         </div>
       </div>
