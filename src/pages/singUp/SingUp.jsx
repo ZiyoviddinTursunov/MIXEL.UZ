@@ -43,10 +43,8 @@ function SingPu() {
         console.log(result);
         {
           result.id
-            ? toast.success("Foydalanuvchi ro'yhatga qo'shildi")
-            : toast.error(
-                "Bu foydalanuvchi nomi orqali avval ro'yhatdan o'tilgan"
-              );
+            ? toast.success("You have entered the system successfully")
+            : toast.error("A user with that username already exists");
         }
         {
           result.id && navigate("/login");
@@ -109,11 +107,11 @@ function SingPu() {
             <div className="input-group">
               <FaPhone className="input-icon" />
               <input
+                required
                 value={number}
                 onInput={(e) => {
                   setNumber(e.target.value);
                 }}
-                required
                 type="tel"
                 placeholder="Phone number"
               />

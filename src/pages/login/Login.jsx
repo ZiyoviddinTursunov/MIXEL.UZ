@@ -43,8 +43,8 @@ function Login({ getData }) {
         }
         {
           result.access
-            ? toast.success("Tizimga muvaffaqqiyatli kirdingiz")
-            : toast.error("Bunday foydalanuvchi mavjud emas");
+            ? toast.success("You have successfully logged in")
+            : toast.error("This user does not exist");
         }
         {
           result.access && setName("");
@@ -92,6 +92,7 @@ function Login({ getData }) {
             <div className="input-group">
               <FaUser className="input-icon" />
               <input
+                required
                 value={name}
                 onInput={(e) => {
                   setName(e.target.value);
@@ -104,6 +105,7 @@ function Login({ getData }) {
             <div className="input-group">
               <FaLock className="input-icon" />
               <input
+                required
                 value={password}
                 onInput={(e) => {
                   setPassword(e.target.value);
