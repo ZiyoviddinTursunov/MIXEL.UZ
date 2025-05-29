@@ -84,7 +84,7 @@ function SingPu() {
           />
         </div>
         <div className="auth-form">
-          <h2>Зарегистрироваться</h2>
+          <h2>Register to MIXEL</h2>
 
           <form
             onSubmit={(e) => {
@@ -102,7 +102,7 @@ function SingPu() {
                 }}
                 required
                 type="email"
-                placeholder="Электронная почта"
+                placeholder="E-mail"
               />
             </div>
 
@@ -115,7 +115,7 @@ function SingPu() {
                 }}
                 required
                 type="tel"
-                placeholder="Номер телефона"
+                placeholder="Phone number"
               />
             </div>
 
@@ -128,7 +128,7 @@ function SingPu() {
                 }}
                 required
                 type="text"
-                placeholder="Имя пользователя"
+                placeholder="Username"
               />
             </div>
 
@@ -141,7 +141,7 @@ function SingPu() {
                 }}
                 required
                 type={eye ? "password" : "text"}
-                placeholder="Пароль"
+                placeholder="Password"
               />
               <button
                 onClick={() => {
@@ -155,17 +155,17 @@ function SingPu() {
             </div>
 
             <button type="submit" className="submit-btn">
-              Зарегистрироваться
+              Register
             </button>
           </form>
 
           <div className="switch-form">
             <p>
-              Нет аккаунта?
+              Already have an account?
               <Link to={"/login"}>
                 {" "}
                 <button type="button" className="switch-btn">
-                  Вход в систему
+                  Login
                 </button>
               </Link>
             </p>

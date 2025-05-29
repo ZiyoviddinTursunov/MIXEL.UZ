@@ -79,7 +79,7 @@ function Login({ getData }) {
           />
         </div>
         <div className="auth-form">
-          <h2>Вход в систему</h2>
+          <h2>Login to MIXEL</h2>
 
           {/* Форма входа */}
           <form
@@ -97,7 +97,7 @@ function Login({ getData }) {
                   setName(e.target.value);
                 }}
                 type="text"
-                placeholder="Имя пользователя"
+                placeholder="Enter your username"
               />
             </div>
 
@@ -109,7 +109,7 @@ function Login({ getData }) {
                   setPassword(e.target.value);
                 }}
                 type={eye ? "password" : "text"}
-                placeholder="Пароль"
+                placeholder="Password"
               />
               <button
                 onClick={() => {
@@ -123,17 +123,17 @@ function Login({ getData }) {
             </div>
 
             <button type="submit" className="submit-btn">
-              Войти
+              Login
             </button>
           </form>
 
           <div className="switch-form">
             <p>
-              Нет аккаунта?
+              Don't have an account?
               <Link to={"/singup"}>
                 {" "}
                 <button type="button" className="switch-btn">
-                  Регистрация
+                  Register
                 </button>
               </Link>
             </p>
