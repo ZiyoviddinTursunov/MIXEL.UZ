@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { FiMapPin, FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiLogIn, FiMapPin, FiShoppingCart, FiUser } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { HiOutlineMicrophone } from "react-icons/hi";
@@ -14,6 +14,7 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Badge, { badgeClasses } from "@mui/material/Badge";
 import { Link, useNavigate } from "react-router-dom";
+import { getToken } from "../../pages/service/token";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -29,17 +30,13 @@ function Navbar({
   dataLike,
   getData,
   data,
-  setSrcData
+  setSrcData,
 }) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
   const [langSound, setLangSound] = useState("ru-RU");
   const [activSound, setActivSound] = useState(false);
   const navigate = useNavigate(null);
-
-
-
-
 
   const langFunk = (lang) => {
     setLangSound(lang === "uz" ? "uz-UZ" : lang === "ru" ? "ru-RU" : "en-US");
@@ -64,7 +61,7 @@ function Navbar({
       const resultText = event.results[0][0].transcript;
       setText(resultText);
       setStatus("Tugatildi.");
-      fiterData(resultText)
+      fiterData(resultText);
       setTimeout(() => {
         setActivSound(false);
       }, 5000);
@@ -73,19 +70,16 @@ function Navbar({
     recognition.onerror = (event) => {
       setStatus("Xatolik: " + event.error);
     };
-
   };
   const fiterData = (text) => {
-    const filtered = data?.results?.filter(item =>
+    const filtered = data?.results?.filter((item) =>
       item.name.toLowerCase().includes(text.toLowerCase())
     );
 
     if (filtered.length > 0) {
       setSrcData(filtered);
     }
-  }
-  
-
+  };
 
   return (
     <nav>
@@ -145,12 +139,11 @@ function Navbar({
                 value={text}
                 onClick={() => navigate("/search")}
                 onChange={(e) => {
-                  setText(e.target.value)
-                  fiterData(e.target.value)
+                  setText(e.target.value);
+                  fiterData(e.target.value);
                 }}
                 type="text"
-                placeholder="Телефоны и бытовая техника"
-                
+                placeholder="Type a product name, brand, or category"
               />
               <div
                 onClick={() => {
@@ -180,7 +173,7 @@ function Navbar({
                     overlap="circular"
                   />
                 </IconButton>
-                <span>Сравнение</span>
+                <span>Comparision</span>
               </div>
             </Link>
 
@@ -194,7 +187,7 @@ function Navbar({
                     overlap="circular"
                   />
                 </IconButton>
-                <span>Избранное</span>
+                <span>Favourites</span>
               </div>
             </Link>
 
@@ -208,18 +201,29 @@ function Navbar({
                     overlap="circular"
                   />
                 </IconButton>
-                <span>Корзина</span>
+                <span>Cart</span>
               </div>
             </Link>
 
-            <Link to="/login">
-              <div className="nav-user">
-                <IconButton>
-                  <FiUser />
-                </IconButton>
-                <span>Войти</span>
-              </div>
-            </Link>
+            {getToken() ? (
+              <Link to="/profile">
+                <div className="nav-user">
+                  <IconButton>
+                    <FiUser />
+                  </IconButton>
+                  <span>Profile</span>
+                </div>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <div className="nav-user">
+                  <IconButton>
+                    <FiLogIn />
+                  </IconButton>
+                  <span>Login</span>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -237,7 +241,7 @@ function Navbar({
             {data
               ? categoryInfo?.results?.map((item, index) => (
                   <li key={index}>
-                    <Link to={`/category/${item.id}`} >{item.name}</Link>
+                    <Link to={`/category/${item.id}`}>{item.name}</Link>
                   </li>
                 ))
               : [...Array(5)].map((_, i) => (

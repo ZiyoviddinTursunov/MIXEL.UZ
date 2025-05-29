@@ -17,6 +17,7 @@ import Search from "./pages/search/Search";
 import Oneproduct from "./pages/oneproduct/Oneproduct";
 import Cart from "./pages/cart/Cart";
 import CartModal from "./components/cardModal/CardModal";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
@@ -172,6 +173,8 @@ function App() {
           />
           <Route path="/product/:id" element={<Oneproduct />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
