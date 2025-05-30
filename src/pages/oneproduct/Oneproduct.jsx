@@ -9,12 +9,13 @@ import { baseURL } from "../../config";
 import { getToken } from "../service/token";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Oneproduct({ addCart }) {
+function Oneproduct({ addCart, likedData }) {
   const { id } = useParams();
   const [oneProduct, setOneProduct] = useState(null);
   const [mainimage, setMainImage] = useState(null);
   const navigate = useNavigate();
   const [count, setcount] = useState(1);
+  console.log(oneProduct);
 
   const getProduct = () => {
     const myHeaders = new Headers();
@@ -31,6 +32,50 @@ function Oneproduct({ addCart }) {
       .then((result) => {
         setOneProduct(result);
         setMainImage(result.main_image);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const addLike = (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
+    const raw = JSON.stringify({
+      product: id,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${baseURL}/liked-items/add/`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        getProduct();
+        likedData();
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const deleteLike = (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${baseURL}/liked-items/${id}/`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        getProduct();
+        likedData();
       })
       .catch((error) => console.error(error));
   };
@@ -116,10 +161,24 @@ function Oneproduct({ addCart }) {
                 </span>
 
                 <span className="line">|</span>
-
-                <span>
-                  <FaHeart />
-                </span>
+                {oneProduct?.like ? (
+                  <span
+                    onClick={() => {
+                      deleteLike(oneProduct?.like_id);
+                    }}
+                    className="added"
+                  >
+                    <FaHeart />
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => {
+                      addLike(oneProduct?.id);
+                    }}
+                  >
+                    <FaHeart />
+                  </span>
+                )}
 
                 <span className="line">|</span>
 

@@ -227,7 +227,7 @@ function App() {
           />
           <Route
             path="/product/:id"
-            element={<Oneproduct addCart={addCart} />}
+            element={<Oneproduct addCart={addCart} likedData={likedData} />}
           />
 
           <Route path="/user" element={<User getData={getData} />} />
