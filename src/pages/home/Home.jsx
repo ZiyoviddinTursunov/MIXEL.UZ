@@ -8,9 +8,16 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { GoArrowRight } from "react-icons/go";
 import { baseURL } from "../../config";
+import { useNavigate } from "react-router-dom";
 
-function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
-
+function Home({
+  categoryInfo,
+  brands,
+  data,
+  getData,
+  likedData,
+  setCardModal,
+}) {
   const [galery, setGalery] = useState(null);
 
   const getGalery = () => {
@@ -22,10 +29,11 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
       .catch((error) => console.error(error));
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getGalery();
   }, []);
-
 
   return (
     <>
@@ -75,13 +83,12 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
             <div className="cards01">
               {data
                 ? data?.results?.map((item, index) => (
-                    <Card 
-                    setCardModal={setCardModal}
+                    <Card
+                      setCardModal={setCardModal}
                       likedData={likedData}
                       getData={getData}
                       key={index}
                       item={item}
-                      
                     />
                   ))
                 : [...Array(10)].map((_, i) => (
@@ -158,8 +165,8 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
             </div>
             <div className="cards01">
               {data?.results?.slice(0, 10).map((item, index) => (
-                <Card 
-                setCardModal={setCardModal}
+                <Card
+                  setCardModal={setCardModal}
                   likedData={likedData}
                   getData={getData}
                   key={index}
@@ -183,8 +190,8 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
               <img src="/imgs/newHotRus 1.png" alt="" />
               <div className="cards02">
                 {data?.results?.slice(6, 12).map((item, index) => (
-                  <Card 
-                  setCardModal={setCardModal}
+                  <Card
+                    setCardModal={setCardModal}
                     likedData={likedData}
                     getData={getData}
                     key={index}
@@ -212,7 +219,12 @@ function Home({ categoryInfo, brands, data, getData, likedData,setCardModal }) {
               className="mySwiper"
             >
               {brands?.results?.map((item, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide
+                  onClick={() => {
+                    navigate(`/brand/${item?.id}`);
+                  }}
+                  key={index}
+                >
                   <div className="brendBox">
                     {item.image ? (
                       <img src={item.image} alt="" />

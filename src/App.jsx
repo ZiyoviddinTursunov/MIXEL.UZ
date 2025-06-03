@@ -18,6 +18,8 @@ import Oneproduct from "./pages/oneproduct/Oneproduct";
 import Cart from "./pages/cart/Cart";
 import CartModal from "./components/cardModal/CardModal";
 import User from "./pages/user/User";
+import Brand from "./pages/brand/Brand";
+
 
 function App() {
   const [modalCtgry, setModalCtgry] = useState(false);
@@ -235,6 +237,7 @@ function App() {
             path="/cart"
             element={<Cart cartData={cartData} getCartData={getCartData} />}
           />
+          <Route path="/brand/:id" element={<Brand/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

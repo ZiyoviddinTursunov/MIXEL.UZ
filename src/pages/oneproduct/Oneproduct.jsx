@@ -15,7 +15,7 @@ function Oneproduct({ addCart, likedData }) {
   const [mainimage, setMainImage] = useState(null);
   const navigate = useNavigate();
   const [count, setcount] = useState(1);
-  console.log(oneProduct);
+  // console.log(oneProduct);
 
   const getProduct = () => {
     const myHeaders = new Headers();
@@ -89,11 +89,15 @@ function Oneproduct({ addCart, likedData }) {
       <div className="container">
         <div className="extra_info">
           <p>
-            <span>
+            <span onClick={()=>{
+              navigate("/")
+            }}>
               Главная <LuChevronRight />
             </span>
-            <span>
-              Ноутбуки
+            <span onClick={()=>{
+              navigate(`/category/${oneProduct?.category}`)
+            }}>
+              {oneProduct?.category_name}
               <LuChevronRight />
             </span>
             <span>

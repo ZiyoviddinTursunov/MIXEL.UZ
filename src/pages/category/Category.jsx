@@ -22,48 +22,55 @@ import { getToken } from "../service/token";
 function Category({ data, likedData, getData }) {
   const { id } = useParams();
   const [categoryData, setCategoryData] = useState(null);
+  const [verticalCard, setVerticalCard] = useState(true);
+  const [view, setView] = React.useState("list");
+  const [value, setValue] = React.useState([20, 37]);
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  console.log(categoryData);
 
+  const categoryFilter = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${getToken()}`);
 
-const categoryFilter=()=>{
-  const myHeaders = new Headers();
-myHeaders.append("Authorization", `Bearer ${getToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
 
-const requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow"
-};
-
-fetch(`https://abzzvx.pythonanywhere.com/products/?category=${id}\n`, requestOptions)
-  .then((response) => response.json())
-  .then((result) => {
-
-    setCategoryData(result?.results)
-
-  })
-  .catch((error) => console.error(error));
-}
-
-useEffect(()=>{
-  categoryFilter()
-},[id])
-
-  const [verticalCard,setVerticalCard]=useState(true)
+    fetch(
+      `https://abzzvx.pythonanywhere.com/products/?category=${id}\n`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        setCategoryData(result?.results);
+      })
+      .catch((error) => console.error(error));
+  };
 
   function valuetext(value) {
     return `${value}°C`;
   }
 
-  const [view, setView] = React.useState("list");
   const handleViewChange = (event, nextView) => {
     setView(nextView);
   };
 
-  const [value, setValue] = React.useState([20, 37]);
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
   };
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  const filterPrice = () => {
+    const filterData = categoryData?.sort((a, b) => a.price - b.price);
+    setCategoryData(filterData);
+    console.log(filterData);
+  };
+
+  useEffect(() => {
+    categoryFilter();
+  }, [id]);
+
   return (
     <div className="categories">
       <div className="container">
@@ -83,10 +90,14 @@ useEffect(()=>{
         </div>
 
         <div className="ctgry_main_info">
-          <h3>{categoryData[0]?.category_name}</h3>
+          <h3>{categoryData ? categoryData[0].category_name : ""}</h3>
           <div className="ctgry_ordering">
             <div>
-              <span>
+              <span
+                onClick={() => {
+                  filterPrice();
+                }}
+              >
                 <TbCoins className="coin" />
                 По цене
               </span>
@@ -103,16 +114,22 @@ useEffect(()=>{
                 exclusive
                 onChange={handleViewChange}
               >
-                <ToggleButton onClick={()=>{
-                      setVerticalCard(true)
-                  
-                }} value="list" aria-label="list">
+                <ToggleButton
+                  onClick={() => {
+                    setVerticalCard(true);
+                  }}
+                  value="list"
+                  aria-label="list"
+                >
                   <CiGrid41 className="coin" />
                 </ToggleButton>
-                <ToggleButton onClick={()=>{
-                 setVerticalCard(false)
-                  
-                }} value="module" aria-label="module">
+                <ToggleButton
+                  onClick={() => {
+                    setVerticalCard(false);
+                  }}
+                  value="module"
+                  aria-label="module"
+                >
                   <CiGrid2H className="coin" />
                 </ToggleButton>
               </ToggleButtonGroup>
@@ -180,25 +197,27 @@ useEffect(()=>{
             </div>
           </div>
           <div className="categoryCard">
-           
-          {
-verticalCard ?   categoryData?.map((item,i)=>{
-  return <Card key={i} item={item} likedData={likedData}
-  getData={getData}/>
-}) :categoryData?.map((item,i) => {
-  return (
-    <CategoryCards key={i}
-      likedData={likedData}
-      getData={getData}
-      item={item}
-    />
-  );
-})
-
-
-          }
-
-       
+            {verticalCard
+              ? categoryData?.map((item, i) => {
+                  return (
+                    <Card
+                      key={i}
+                      item={item}
+                      likedData={likedData}
+                      getData={getData}
+                    />
+                  );
+                })
+              : categoryData?.map((item, i) => {
+                  return (
+                    <CategoryCards
+                      key={i}
+                      likedData={likedData}
+                      getData={getData}
+                      item={item}
+                    />
+                  );
+                })}
           </div>
         </div>
       </div>
